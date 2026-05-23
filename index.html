@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,23 +11,90 @@
   <style>
     /* ── Tokens ────────────────────────────────────────────────── */
     :root {
-      --bg:      oklch(96% 0.012 145);
+      --bg:      oklch(97% 0.006 85);
       --surface: oklch(100% 0 0);
-      --fg:      oklch(21% 0.045 155);
-      --muted:   oklch(47% 0.018 160);
-      --border:  oklch(86% 0.012 145);
-      --accent:  oklch(56% 0.095 220);
-      --green:   oklch(38% 0.075 150);
-      --orange:  oklch(57% 0.12 60);
-      --navy:    oklch(27% 0.045 165);
-      --hero-bg: oklch(92% 0.012 105);
-      --hero-fg: oklch(22% 0.045 160);
-      --hero-muted: oklch(43% 0.025 155);
+      --fg:      oklch(20% 0.04 255);
+      --muted:   oklch(50% 0.015 240);
+      --border:  oklch(88% 0.008 90);
+      --accent:  oklch(65% 0.14 75);
+      --steel:   oklch(42% 0.09 255);
+      --orange:  oklch(60% 0.16 42);
+      --navy:    oklch(20% 0.09 255);
 
       --f-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
       --f-body:    'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       --f-mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
     }
+
+    /* ── Dark theme ────────────────────────────────────────────── */
+    [data-theme="dark"] {
+      --bg:      oklch(14% 0.05 255);
+      --surface: oklch(19% 0.05 255);
+      --fg:      oklch(92% 0.008 90);
+      --muted:   oklch(62% 0.012 240);
+      --border:  oklch(28% 0.04 255);
+      --accent:  oklch(68% 0.14 75);
+      --steel:   oklch(60% 0.11 255);
+      --orange:  oklch(65% 0.16 42);
+      --navy:    oklch(10% 0.07 255);
+    }
+    [data-theme="dark"] body { background: var(--bg); }
+    [data-theme="dark"] #cover { background: var(--navy); }
+    [data-theme="dark"] .map-wrap { background: var(--surface); }
+    [data-theme="dark"] .map-wrap svg rect { fill: oklch(19% 0.05 255); }
+    [data-theme="dark"] .base-card { background: oklch(22% 0.05 255); border-color: oklch(30% 0.04 255); }
+    [data-theme="dark"] .stat-chip { background: oklch(22% 0.05 255); }
+    /* callout backgrounds derive from tokens via color-mix — no hardcoded overrides needed */
+    [data-theme="dark"] .hl-card      { background: var(--surface); border-color: var(--border); border-top-color: var(--accent); }
+    [data-theme="dark"] .tip-card     { background: color-mix(in oklch, var(--accent) 8%, var(--surface)); border-color: color-mix(in oklch, var(--accent) 30%, var(--border)); }
+    [data-theme="dark"] .act-tag      { background: var(--surface); border-color: var(--border); }
+
+    /* ── Sepia / print theme ───────────────────────────────────── */
+    [data-theme="sepia"] {
+      --bg:      oklch(95% 0.022 80);
+      --surface: oklch(97% 0.018 82);
+      --fg:      oklch(22% 0.04 60);
+      --muted:   oklch(46% 0.018 70);
+      --border:  oklch(84% 0.018 80);
+      --accent:  oklch(54% 0.13 55);
+      --steel:   oklch(38% 0.08 250);
+      --orange:  oklch(52% 0.15 42);
+      --navy:    oklch(22% 0.06 250);
+    }
+    [data-theme="sepia"] .map-wrap svg rect { fill: oklch(95% 0.022 80); }
+
+    /* ── Theme switcher chrome ─────────────────────────────────── */
+    .theme-switcher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 200;
+      display: flex;
+      gap: 4px;
+      background: rgba(10, 14, 26, 0.90);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 5px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .theme-switcher button {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      font-size: 14px;
+      display: grid;
+      place-items: center;
+      transition: border-color 0.15s, transform 0.12s;
+    }
+    .theme-switcher button:hover { transform: scale(1.12); }
+    .theme-switcher button.active { border-color: rgba(255,255,255,0.60); }
+    .theme-switcher .t-classic { background: oklch(20% 0.09 255); color: oklch(65% 0.14 75); }
+    .theme-switcher .t-dark    { background: oklch(10% 0.07 255); color: oklch(68% 0.14 75); }
+    .theme-switcher .t-sepia   { background: oklch(78% 0.06 75);  color: oklch(22% 0.06 250); }
+    @media print { .theme-switcher { display: none !important; } }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -99,37 +167,62 @@
     #cover {
       max-width: 100%;
       padding: 0;
-      background: var(--hero-bg);
-      color: var(--hero-fg);
+      background: var(--navy);
+      color: #fff;
     }
     .cover-inner {
       max-width: 900px;
       margin: 0 auto;
-      padding: 80px 52px 0;
+      padding: 0 52px;
     }
     .cover-eyebrow {
       font-family: var(--f-mono);
       font-size: 11px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--hero-muted);
-      margin-bottom: 24px;
+      color: rgba(255,255,255,0.45);
     }
     .cover-title {
       font-family: var(--f-display);
       font-size: clamp(38px, 5.5vw, 70px);
       font-weight: 700;
       line-height: 1.04;
-      color: var(--hero-fg);
-      max-width: 760px;
-      margin-bottom: 20px;
+      color: #fff;
+      margin-bottom: 0;
     }
+    .cover-lower-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .cover-title .arrow { color: var(--accent); }
     .cover-subtitle {
       font-size: 17px;
-      font-weight: 400;
-      color: var(--hero-muted);
-      margin-bottom: 58px;
-      letter-spacing: 0.01em;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 52px;
+      letter-spacing: 0.02em;
+    }
+    .cover-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 60px;
+    }
+    .stat-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+    }
+    .stat-chip .s-icon { font-size: 18px; line-height: 1; }
+    .stat-chip .s-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.88);
     }
     .bases-label {
       font-family: var(--f-mono);
@@ -137,7 +230,7 @@
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 16px;
+      margin-bottom: 0;
     }
     .bases-grid {
       display: grid;
@@ -145,8 +238,8 @@
       gap: 14px;
     }
     .base-card {
-      background: rgba(255,255,255,0.62);
-      border: 1px solid rgba(42,70,62,0.14);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
       border-top: 3px solid var(--accent);
       padding: 20px 18px 22px;
     }
@@ -161,34 +254,56 @@
       font-family: var(--f-display);
       font-size: 19px;
       font-weight: 700;
-      color: var(--hero-fg);
+      color: #fff;
       line-height: 1.2;
       margin-bottom: 8px;
     }
     .base-dates {
       font-size: 12px;
-      color: var(--hero-muted);
+      color: rgba(255,255,255,0.45);
       font-variant-numeric: tabular-nums;
       margin-bottom: 10px;
     }
     .base-nights {
       display: inline-block;
-      background: rgba(42,70,62,0.08);
+      background: rgba(255,255,255,0.08);
       font-family: var(--f-mono);
       font-size: 10px;
       padding: 3px 9px;
-      color: var(--hero-muted);
+      color: rgba(255,255,255,0.65);
       margin-bottom: 12px;
     }
     .base-desc {
       font-size: 12px;
-      color: oklch(38% 0.024 155);
+      color: rgba(255,255,255,0.38);
       line-height: 1.5;
     }
-    .cover-mountains {
-      display: block;
-      margin-top: 56px;
+    .cover-hero {
+      position: relative;
       width: 100%;
+      height: clamp(300px, 42vw, 520px);
+      overflow: hidden;
+    }
+    .cover-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+    }
+    .cover-hero-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 52px 18px;
+      background: none;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .cover-lower {
+      padding: 36px 0 48px;
     }
 
     /* ── Section scaffolding ───────────────────────────────────── */
@@ -277,7 +392,7 @@
       margin-top: 6px;
       width: 9px;
       height: 9px;
-      background: var(--green);
+      background: var(--steel);
       border-radius: 50%;
       justify-self: center;
     }
@@ -321,16 +436,13 @@
       text-transform: uppercase;
       margin-bottom: 6px;
     }
-    .callout.warn {
-      background: oklch(98% 0.018 75);
+    .callout.warn,
+    .callout.tip {
+      background: color-mix(in oklch, var(--accent) 8%, var(--surface));
       border-left: 3px solid var(--accent);
     }
-    .callout.warn strong { color: oklch(52% 0.14 75); }
-    .callout.tip {
-      background: oklch(97% 0.012 155);
-      border-left: 3px solid var(--green);
-    }
-    .callout.tip strong { color: var(--green); }
+    .callout.warn strong,
+    .callout.tip strong { color: var(--accent); }
 
     /* ── Two-column layout ─────────────────────────────────────── */
     .two-col {
@@ -409,7 +521,7 @@
     }
     .hl-card {
       border: 1px solid var(--border);
-      border-top: 3px solid var(--green);
+      border-top: 3px solid var(--steel);
       padding: 18px;
       background: var(--surface);
     }
@@ -470,11 +582,14 @@
         max-width: 100%;
         page-break-before: auto;
         break-before: auto;
-        background: var(--hero-bg) !important;
+        background: var(--navy) !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
-      .cover-inner { padding: 28px 0 0; }
+      .cover-hero { height: 200px; }
+      .cover-hero-text { padding: 0 28px 24px; }
+      .cover-lower { padding: 20px 0 32px; }
+      .cover-inner { padding: 0; }
       .bases-grid { grid-template-columns: repeat(4, 1fr); }
       .hl-grid { grid-template-columns: repeat(3, 1fr); }
       .tips-grid { grid-template-columns: repeat(2, 1fr); }
@@ -497,13 +612,11 @@
     /* ── Mobile ────────────────────────────────────────────────── */
     @media (max-width: 660px) {
       .page { padding: 64px 22px 48px; }
-      .cover-inner { padding: 72px 26px 0; }
-      .cover-title { font-size: 42px; }
-      .cover-subtitle { margin-bottom: 44px; }
-      .bases-grid { grid-template-columns: 1fr; }
+      .bases-grid { grid-template-columns: repeat(2, 1fr); }
       .two-col { grid-template-columns: 1fr; gap: 32px; }
       .hl-grid { grid-template-columns: repeat(2, 1fr); }
       .tips-grid { grid-template-columns: 1fr; }
+      .cover-stats { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
@@ -511,7 +624,7 @@
 
   <!-- TOP NAV -->
   <nav class="top-nav" aria-label="Itinerary navigation">
-    <span class="nav-brand">Canadian Rockies</span>
+    <span class="nav-brand">Canada</span>
     <a href="#cover">Overview</a>
     <a href="#route">Route Map</a>
     <a href="#day1">Day 1</a>
@@ -526,50 +639,56 @@
   </nav>
 
   <!-- ── COVER ───────────────────────────────────────────────────── -->
-  <section id="cover" class="page">
-    <div class="cover-inner">
-      <p class="cover-eyebrow">Alberta &amp; British Columbia</p>
-      <h1 class="cover-title">Canadian Rockies Road Trip</h1>
-      <p class="cover-subtitle">Calgary → Vancouver · Aug 18–27, 2026</p>
-
-      <p class="bases-label">4 Base Camps</p>
-      <div class="bases-grid">
-        <div class="base-card">
-          <p class="base-num">BASE 01</p>
-          <p class="base-name">Canmore, AB</p>
-          <p class="base-dates">Aug 18 – 21</p>
-          <span class="base-nights">3 Nights</span>
-          <p class="base-desc">Gateway to Banff · Moraine Lake · Lake Louise · Johnston Canyon</p>
+  <section id="cover">
+    <!-- Photo hero -->
+    <div class="cover-hero">
+      <img src="mpiy09oi-image.png" class="cover-photo" alt="Moraine Lake at sunrise, Banff National Park">
+      <div class="cover-hero-text">
+        <h1 class="cover-title" data-od-id="path-1-0-1-0">
+          Rocky Mountains<br>
+          <span class="arrow">→</span> Coast Mountains
+        </h1>
+      </div>
+    </div>
+    <!-- Base camps -->
+    <div class="cover-lower">
+      <div class="cover-inner">
+        <div class="cover-lower-header">
+          <p class="bases-label">4 Base Camps</p>
+          <p class="cover-eyebrow">Aug 18 – 27, 2026 &nbsp;·&nbsp; Alberta &amp; British Columbia, Canada</p>
         </div>
-        <div class="base-card">
-          <p class="base-num">BASE 02</p>
-          <p class="base-name">Jasper, AB</p>
-          <p class="base-dates">Aug 21 – 23</p>
-          <span class="base-nights">2 Nights</span>
-          <p class="base-desc">Maligne Lake · Pyramid Lake · Jasper town · Dark Sky Preserve</p>
-        </div>
-        <div class="base-card">
-          <p class="base-num">BASE 03</p>
-          <p class="base-name">Revelstoke, BC</p>
-          <p class="base-dates">Aug 23 – 24</p>
-          <span class="base-nights">1 Night</span>
-          <p class="base-desc">Rogers Pass · Glacier NP · Entry into British Columbia</p>
-        </div>
-        <div class="base-card">
-          <p class="base-num">BASE 04</p>
-          <p class="base-name">Whistler &amp; Vancouver</p>
-          <p class="base-dates">Aug 24 – 27</p>
-          <span class="base-nights">3 Nights</span>
-          <p class="base-desc">Peak 2 Peak · Garibaldi · Sea to Sky Hwy · Fly out YVR</p>
+        <div class="bases-grid">
+          <div class="base-card">
+            <p class="base-num">BASE 01</p>
+            <p class="base-name">Canmore, AB</p>
+            <p class="base-dates">Aug 18 – 21</p>
+            <span class="base-nights">3 Nights</span>
+            <p class="base-desc">Gateway to Banff · Moraine Lake · Lake Louise · Johnston Canyon</p>
+          </div>
+          <div class="base-card">
+            <p class="base-num">BASE 02</p>
+            <p class="base-name">Jasper, AB</p>
+            <p class="base-dates">Aug 21 – 23</p>
+            <span class="base-nights">2 Nights</span>
+            <p class="base-desc">Maligne Lake · Pyramid Lake · Jasper town · Dark Sky Preserve</p>
+          </div>
+          <div class="base-card">
+            <p class="base-num">BASE 03</p>
+            <p class="base-name">Revelstoke, BC</p>
+            <p class="base-dates">Aug 23 – 24</p>
+            <span class="base-nights">1 Night</span>
+            <p class="base-desc">Rogers Pass · Glacier NP · Entry into British Columbia</p>
+          </div>
+          <div class="base-card">
+            <p class="base-num">BASE 04</p>
+            <p class="base-name">Whistler &amp; Vancouver</p>
+            <p class="base-dates">Aug 24 – 27</p>
+            <span class="base-nights">3 Nights</span>
+            <p class="base-desc">Peak 2 Peak · Garibaldi · Sea to Sky Hwy · Fly out YVR</p>
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- Mountain silhouette decoration -->
-    <svg class="cover-mountains" viewBox="0 0 1200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMax slice">
-      <polygon points="0,140 100,55 175,105 250,35 340,90 410,20 490,75 560,10 640,65 710,30 790,80 860,40 940,85 1010,25 1080,70 1150,45 1200,80 1200,140" fill="rgba(42,70,62,0.08)"/>
-      <polygon points="0,140 60,90 140,120 220,75 310,115 390,65 470,100 540,50 610,90 680,60 760,95 840,70 920,105 990,60 1060,90 1130,65 1200,95 1200,140" fill="rgba(42,70,62,0.13)"/>
-    </svg>
   </section>
 
   <!-- ── ROUTE OVERVIEW ───────────────────────────────────────────── -->
@@ -580,92 +699,48 @@
 
     <div class="map-wrap">
       <svg viewBox="0 0 800 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;" role="img" aria-label="Route map from Calgary to Vancouver through the Canadian Rockies">
-        <!-- Background -->
         <rect width="800" height="290" fill="#F7F5F0"/>
-
-        <!-- Mountain silhouettes -->
         <polygon points="0,230 60,140 110,190 175,110 240,170 295,80 360,150 410,100 460,155 520,115 570,160 630,125 680,168 740,135 800,165 800,230" fill="oklch(42% 0.10 155 / 0.10)"/>
         <polygon points="0,230 40,180 90,210 150,160 210,200 270,145 330,190 390,165 440,195 500,170 550,200 610,178 660,205 710,182 770,205 800,195 800,230" fill="oklch(42% 0.10 155 / 0.16)"/>
-
-        <!-- Province border -->
         <line x1="462" y1="18" x2="462" y2="272" stroke="rgba(0,0,0,0.08)" stroke-width="1" stroke-dasharray="5,4"/>
         <text x="385" y="30" font-family="monospace" font-size="9" fill="rgba(0,0,0,0.28)" letter-spacing="2">ALBERTA</text>
         <text x="480" y="30" font-family="monospace" font-size="9" fill="rgba(0,0,0,0.28)" letter-spacing="2">BRITISH COLUMBIA</text>
-
-        <!-- Route path -->
-        <path d="M 65,210
-                 C 90,210 115,185 140,170
-                 C 160,157 175,140 192,125
-                 C 210,110 222,105 238,108
-                 C 255,112 268,130 282,140
-                 C 300,152 320,158 352,158
-                 C 375,158 400,155 430,148
-                 C 450,143 462,138 498,165
-                 C 528,188 560,205 600,222
-                 C 633,235 660,242 700,244
-                 C 726,245 748,241 766,237"
+        <path d="M 65,210 C 90,210 115,185 140,170 C 160,157 175,140 192,125 C 210,110 222,105 238,108 C 255,112 268,130 282,140 C 300,152 320,158 352,158 C 375,158 400,155 430,148 C 450,143 462,138 498,165 C 528,188 560,205 600,222 C 633,235 660,242 700,244 C 726,245 748,241 766,237"
               stroke="oklch(65% 0.14 75)" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-
-        <!-- Arrowhead at Vancouver -->
         <polygon points="766,230 782,237 766,244" fill="oklch(65% 0.14 75)"/>
-
-        <!-- STOPS -->
-        <!-- Calgary -->
         <circle cx="65" cy="210" r="9" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
         <text x="65" y="185" font-family="sans-serif" font-weight="700" font-size="11.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Calgary</text>
         <text x="65" y="198" font-family="monospace" font-size="9" fill="oklch(50% 0.015 240)" text-anchor="middle">YYC · Start</text>
-
-        <!-- Canmore/Banff -->
         <circle cx="145" cy="166" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
         <text x="145" y="142" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Canmore</text>
         <text x="145" y="154" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 1 · Banff</text>
-
-        <!-- Lake Louise / Moraine -->
         <circle cx="215" cy="116" r="6" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="2"/>
         <text x="215" y="95" font-family="sans-serif" font-weight="600" font-size="10.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Lake Louise</text>
         <text x="215" y="107" font-family="monospace" font-size="8" fill="oklch(50% 0.015 240)" text-anchor="middle">+ Moraine Lake</text>
-
-        <!-- Columbia Icefield -->
         <circle cx="275" cy="138" r="5.5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="2"/>
         <text x="275" y="118" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)" text-anchor="middle">Columbia</text>
         <text x="275" y="129" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)" text-anchor="middle">Icefield</text>
-
-        <!-- Jasper -->
         <circle cx="355" cy="158" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
         <text x="355" y="136" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Jasper</text>
         <text x="355" y="148" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 2</text>
-
-        <!-- Mt Robson -->
         <circle cx="430" cy="148" r="5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="1.5"/>
         <text x="430" y="130" font-family="sans-serif" font-weight="500" font-size="9.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Mt. Robson</text>
-
-        <!-- Rogers Pass -->
         <circle cx="498" cy="165" r="5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="1.5"/>
         <text x="498" y="185" font-family="sans-serif" font-weight="500" font-size="9.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Rogers Pass</text>
-
-        <!-- Revelstoke -->
         <circle cx="600" cy="222" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
         <text x="600" y="248" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Revelstoke</text>
         <text x="600" y="260" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 3</text>
-
-        <!-- Whistler -->
         <circle cx="700" cy="244" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
         <text x="700" y="222" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Whistler</text>
         <text x="700" y="234" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 4</text>
-
-        <!-- Vancouver -->
         <circle cx="770" cy="237" r="9" fill="oklch(20% 0.04 255)" stroke="#F7F5F0" stroke-width="2.5"/>
         <text x="770" y="214" font-family="sans-serif" font-weight="700" font-size="11.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Vancouver</text>
         <text x="770" y="226" font-family="monospace" font-size="9" fill="oklch(50% 0.015 240)" text-anchor="middle">YVR · End</text>
-
-        <!-- Distance markers on route -->
         <text x="104" y="207" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">100 km</text>
         <text x="290" y="96" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">300 km</text>
         <text x="400" y="122" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">640 km</text>
         <text x="648" y="225" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">475 km</text>
         <text x="736" y="225" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">125 km</text>
-
-        <!-- Legend -->
         <circle cx="26" cy="272" r="6" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="1.5"/>
         <text x="38" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Overnight base</text>
         <circle cx="128" cy="272" r="4.5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="1.5"/>
@@ -776,7 +851,7 @@
     </ul>
     <div class="callout warn">
       <strong>Book Before You Go</strong>
-      Moraine Lake shuttles fill weeks out — confirm your Parks Canada reservation now. Spirit Island boat tours (Day 5) require advance booking through SunDog Tours. Both sell out in August.
+      Moraine Lake and Lake Louise shuttle passes are released on the Parks Canada reservation site exactly <strong>2 days before your visit date at 8:00 AM MT</strong> — set an alarm and book the moment slots open, as they sell out within minutes. Spirit Island boat tours (Day 5) require advance booking through SunDog Tours. Both sell out in August.
     </div>
   </section>
 
@@ -803,7 +878,7 @@
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Banff Avenue + Bow Falls <span class="act-tag">Midday</span></p>
-          <p class="act-body">Stroll the main strip for lunch — Park Distillery and Eddie Burger + Bar are both good. Short path leads to Bow Falls viewpoint from Bow Avenue bridge.</p>
+          <p class="act-body">Stroll the main strip for lunch — Park Distillery and Eddie Burger + Bar are both solid. Short path leads to Bow Falls viewpoint from Bow Avenue bridge.</p>
         </div>
       </li>
       <li class="act">
@@ -817,13 +892,13 @@
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Johnston Canyon <span class="act-tag">Late afternoon · 30 min from Canmore</span></p>
-          <p class="act-body">Catwalk trail through a dramatic limestone canyon. Lower Falls: 1.1 km easy (30 min). Upper Falls add 2.7 km more (45 min extra). Go at least to the Upper Falls — they're worth it. Return before dark.</p>
+          <p class="act-body">Catwalk trail through a dramatic limestone canyon. Lower Falls: 1.1 km easy (30 min). Upper Falls add 2.7 km more (45 min extra). Go at least to the Upper Falls — they're worth it.</p>
         </div>
       </li>
     </ul>
     <div class="callout tip">
       <strong>Parks Canada Discovery Pass</strong>
-      Required for Banff NP entry. Buy online at parks.canada.ca or at the park gate. The group day pass (~$10.50/person) is fine; the annual Discovery Pass (~$75/adult) pays off if you plan to visit more parks this year. It also covers Jasper and Glacier NP later in this trip.
+      Required for Banff NP entry. Buy online at parks.canada.ca or at the park gate. The annual Discovery Pass (~$75/adult) also covers Jasper and Glacier NP later in this trip — worth it if you don't already have one.
     </div>
   </section>
 
@@ -843,7 +918,7 @@
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Moraine Lake — Valley of Ten Peaks <span class="act-tag">5:00–5:30 AM departure</span></p>
-          <p class="act-body">The glacier-carved valley backed by ten peaks above 3,000m. Climb the Rock Pile (easy, 20 min) for the classic viewpoint. Canoe rentals available from the dock. Take the Parks Canada shuttle from the Lake Louise Park &amp; Ride.</p>
+          <p class="act-body">The glacier-carved valley backed by ten peaks above 3,000m. Climb the Rock Pile (easy, 20 min) for the classic viewpoint. Canoe rentals from the dock. Take the Parks Canada shuttle from the Lake Louise Park &amp; Ride.</p>
         </div>
       </li>
       <li class="act">
@@ -857,11 +932,11 @@
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Return to Canmore, pack for tomorrow <span class="act-tag">Afternoon</span></p>
-          <p class="act-body">Day 4 is a drive day with an early checkout. Pack tonight. Dinner at home base.</p>
+          <p class="act-body">Day 4 is a full drive day with an early checkout. Pack tonight. Confirm Jasper check-in details.</p>
         </div>
       </li>
     </ul>
-    <div class="callout warn">
+    <div class="callout tip">
       <strong>Moraine Lake — The Most Important Logistics of the Trip</strong>
       You'll be taking the Parks Canada shuttle from the Lake Louise Park &amp; Ride — the right call. <strong>Shuttle passes drop on the Parks Canada site 2 days before your visit at 8:00 AM MT — set an alarm, have the page open ahead of time, and book within the first few minutes.</strong> Slots vanish in seconds on August dates.
     </div>
@@ -883,14 +958,14 @@
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Bow Lake <span class="act-tag">1 hr 15 min from Canmore</span></p>
-          <p class="act-body">First major stop on the Parkway. Glacier-fed water that's impossible to photograph badly. Easy lakeside trail (30 min). Bow Glacier visible at the far end.</p>
+          <p class="act-body">First major stop on the Parkway. Glacier-fed water that's impossible to photograph badly. Easy lakeside trail (30 min). Bow Glacier visible at the far end of the lake.</p>
         </div>
       </li>
       <li class="act">
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Peyto Lake — Bow Summit Lookout <span class="act-tag">20 min from Bow Lake</span></p>
-          <p class="act-body">Park at Bow Summit (2,069m — highest paved point on the Pkwy). Walk 20 min to the famous wolf-head viewpoint over the electric-blue lake. Arrive before 10 AM for best colour and fewest people.</p>
+          <p class="act-body">Park at Bow Summit (2,069m — highest paved point on the Pkwy). Walk 20 min to the famous wolf-head viewpoint over electric-blue Peyto Lake. Arrive before 10 AM for best colour and fewest people.</p>
         </div>
       </li>
       <li class="act">
@@ -911,7 +986,7 @@
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Arrive Jasper, check in <span class="act-tag">Late afternoon</span></p>
-          <p class="act-body">Jasper is a small, walkable mountain town. Walk Connaught Drive. Elk frequently graze in town at dusk. Dinner at Marmot Bistro or Evil Dave's Grill.</p>
+          <p class="act-body">Jasper is small and walkable. Walk Connaught Drive. Elk frequently graze in town at dusk. Dinner at Marmot Bistro or Evil Dave's Grill on Patricia Street.</p>
         </div>
       </li>
     </ul>
@@ -933,14 +1008,14 @@
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Maligne Lake — Spirit Island Cruise <span class="act-tag">Morning · 45 min from Jasper · Book in advance</span></p>
-          <p class="act-body">Drive past Medicine Lake (a "sinking" lake with no visible outlet — it drains underground). At Maligne Lake, board the 90-minute Spirit Island boat cruise — one of Canada's most iconic views. Kayak rentals available at the boathouse if cruise is sold out.</p>
+          <p class="act-body">Drive past Medicine Lake — a "sinking" lake with no visible outlet (it drains underground through a karst system). At Maligne Lake, board the 90-minute Spirit Island boat cruise, one of Canada's most iconic views. Kayak rentals available at the boathouse if cruise is sold out.</p>
         </div>
       </li>
       <li class="act">
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Maligne Canyon <span class="act-tag">Midday · 15 min from Jasper</span></p>
-          <p class="act-body">Six bridges cross a 55m limestone gorge carved by the Maligne River. The teahouse sits at trailhead. Full canyon loop: 7.5 km, 2–2.5 hrs. Short version to bridge 2: 45 min, very dramatic.</p>
+          <p class="act-body">Six bridges cross a 55m limestone gorge carved by the Maligne River. Teahouse at trailhead. Full canyon loop: 7.5 km, 2–2.5 hrs. Short version to bridge 2: 45 min, very dramatic.</p>
         </div>
       </li>
       <li class="act">
@@ -980,41 +1055,41 @@
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Early checkout, head west on Hwy 16 <span class="act-tag">7:30–8:00 AM departure</span></p>
-          <p class="act-body">Yellowhead Highway through the Miette Valley. The drive west from Jasper is dramatic — wide valley, mountain walls on both sides, frequent wildlife sightings (mountain goats, moose).</p>
+          <p class="act-body">Yellowhead Highway west through the Miette Valley. Wide valley, mountain walls on both sides, frequent wildlife sightings — mountain goats on rock faces past Pocahontas.</p>
         </div>
       </li>
       <li class="act">
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Mt. Robson Provincial Park <span class="act-tag">~1 hr from Jasper</span></p>
-          <p class="act-body">At 3,954m, Mt. Robson is the highest peak in the Canadian Rockies. Stop at the visitor centre for the view — the summit is cloud-capped more than two-thirds of days. On a clear morning, it stops you cold.</p>
+          <p class="act-body">At 3,954m, Mt. Robson is the highest peak in the Canadian Rockies. Stop at the visitor centre for the view — the summit is cloud-capped more than two-thirds of days. On a clear morning, it's staggering.</p>
         </div>
       </li>
       <li class="act">
         <span class="act-dot"></span>
         <div>
-          <p class="act-title">Hwy 5 South through the Thompson Plateau <span class="act-tag">Midday drive · fuel in Kamloops</span></p>
-          <p class="act-body">From Valemount, Hwy 5 drops south through interior BC — dry grassland and pine forest replace the alpine. Kamloops is the natural lunch and fuel stop (halfway point). Don't skip — petrol is sparse east of the city toward Revelstoke.</p>
+          <p class="act-title">Hwy 5 South through interior BC <span class="act-tag">Midday drive · fuel in Kamloops</span></p>
+          <p class="act-body">From Valemount, Hwy 5 drops south through dry grassland plateau — a complete change of scenery from the alpine. Kamloops is the natural lunch and fuel stop. Don't skip — petrol is sparse between Kamloops and Revelstoke.</p>
         </div>
       </li>
       <li class="act">
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Rogers Pass — Glacier National Park <span class="act-tag">Late afternoon</span></p>
-          <p class="act-body">The Trans-Canada's most dramatic mountain pass through the Selkirks. Rogers Pass Discovery Centre (National Historic Site) is worth 20 minutes. Concrete avalanche sheds line the highway — the world's largest mobile avalanche control program. Stunning Illecillewaet Glacier visible from the road.</p>
+          <p class="act-body">Trans-Canada's most dramatic mountain pass through the Selkirk Mountains. Rogers Pass Discovery Centre (National Historic Site) — worth 20 minutes. Concrete avalanche sheds line the highway. Illecillewaet Glacier visible from the road.</p>
         </div>
       </li>
       <li class="act">
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Arrive Revelstoke <span class="act-tag">Evening</span></p>
-          <p class="act-body">Revelstoke punches above its size — good food, craft beer, lively Mackenzie Ave. Try Dose Coffee in the morning. Check in and rest; tomorrow is another drive day.</p>
+          <p class="act-body">Revelstoke has a lively downtown — Mackenzie Ave has restaurants, breweries, and local shops. Dose Coffee for the morning. Rest up; tomorrow is another drive day to Whistler.</p>
         </div>
       </li>
     </ul>
     <div class="callout warn">
       <strong>The Long Day — Plan Around It</strong>
-      640 km is the most demanding driving day of the trip. Depart by 7:30–8:00 AM to reach Revelstoke before 7 PM. The Mt. Robson and Rogers Pass stops are the natural breaks — don't skip them, but keep them to 20–30 min each.
+      640 km is the most demanding driving day of the trip. Depart by 7:30–8:00 AM to reach Revelstoke before 7 PM. The Mt. Robson and Rogers Pass stops are the natural breaks — keep them to 20–30 min each, but don't skip them.
     </div>
   </section>
 
@@ -1038,7 +1113,7 @@
             <span class="act-dot"></span>
             <div>
               <p class="act-title">Drive Revelstoke → Whistler <span class="act-tag">Morning · ~5 hr</span></p>
-              <p class="act-body">Hwy 1 West to Cache Creek, then Hwy 99 South through Lillooet and Pemberton (Duffey Lake Road) — a spectacular mountain route in its own right. Arrive Whistler Village by early afternoon.</p>
+              <p class="act-body">Hwy 1 West to Cache Creek, then Hwy 99 South through Lillooet and Pemberton — the Duffey Lake Road is a spectacular mountain route in its own right. Arrive Whistler Village early afternoon.</p>
             </div>
           </li>
           <li class="act">
@@ -1052,14 +1127,14 @@
             <span class="act-dot"></span>
             <div>
               <p class="act-title">Whistler Village + Alta Lake <span class="act-tag">Evening</span></p>
-              <p class="act-body">Walk the car-free pedestrian village. Alta Lake is a 10-min drive — kayak or SUP rentals, calm water, and mountain reflections. Good dinner on the Village Stroll.</p>
+              <p class="act-body">Walk the car-free pedestrian village. Alta Lake is 10 min away — kayak and SUP rentals, calm water, mountain reflections. Good dinner options along the Village Stroll.</p>
             </div>
           </li>
         </ul>
       </div>
 
       <div>
-        <p class="col-label">Aug 25–26 — Full Days in Whistler</p>
+        <p class="col-label">Aug 25–26 — Full Days</p>
         <ul class="activities">
           <li class="act">
             <span class="act-dot"></span>
@@ -1072,14 +1147,14 @@
             <span class="act-dot"></span>
             <div>
               <p class="act-title">Brandywine Falls <span class="act-tag">20 min south · Easy</span></p>
-              <p class="act-body">BC's most dramatic roadside waterfall — 70m drop into a volcanic rock pool. 10-minute walk from parking. If the group needs a rest day from big hiking, this + Green Lake is a perfect half-day.</p>
+              <p class="act-body">BC's most dramatic roadside waterfall — 70m drop into a volcanic rock pool. 10-minute walk from parking. If the group needs a rest day, this + Green Lake is a perfect half-day.</p>
             </div>
           </li>
           <li class="act">
             <span class="act-dot"></span>
             <div>
               <p class="act-title">Lost Lake Park + Green Lake <span class="act-tag">Relaxed afternoon</span></p>
-              <p class="act-body">Lost Lake: 7 km forest loop with a swimming dock, free and beautiful. Green Lake: emerald-coloured water, SUP and kayak rentals, great for a warm afternoon.</p>
+              <p class="act-body">Lost Lake: 7 km forest loop with a swimming dock, free and beautiful. Green Lake: emerald-coloured water, SUP rentals, great for a warm afternoon.</p>
             </div>
           </li>
         </ul>
@@ -1088,7 +1163,7 @@
 
     <div class="callout tip" style="margin-top:24px;">
       <strong>Garibaldi vs. Easy Day — Pick One</strong>
-      Garibaldi Lake is a full, strenuous day. If the group wants lower effort, do Brandywine Falls (30 min), Lost Lake loop (2 hrs), and Green Lake (1 hr) — equally beautiful, half the effort. Both options are excellent.
+      Garibaldi Lake is a full, strenuous day. If the group wants lower effort, do Brandywine Falls (30 min), Lost Lake loop (2 hrs), and Green Lake (1 hr) — equally beautiful, half the effort.
     </div>
   </section>
 
@@ -1107,8 +1182,8 @@
       <li class="act">
         <span class="act-dot"></span>
         <div>
-          <p class="act-title">Drive Sea to Sky Highway — Hwy 99 South <span class="act-tag">Morning</span></p>
-          <p class="act-body">One of Canada's great drives. The road hugs Pacific fjord shoreline with the Coast Mountains rising straight up on the east side. Howe Sound opens dramatically south of Squamish.</p>
+          <p class="act-title">Drive Sea to Sky Highway (Hwy 99 South) <span class="act-tag">Morning</span></p>
+          <p class="act-body">One of Canada's great drives. The road hugs Pacific fjord shoreline with the Coast Mountains rising on the east side. Howe Sound opens dramatically south of Squamish.</p>
         </div>
       </li>
       <li class="act">
@@ -1129,14 +1204,14 @@
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Continue to Vancouver <span class="act-tag">30 min from Squamish</span></p>
-          <p class="act-body">Through West Vancouver and into the city. If the flight is evening: drop bags, walk the Stanley Park Seawall (10 km flat loop), visit Granville Island Market, or just eat well in Yaletown.</p>
+          <p class="act-body">Through West Vancouver and into the city. If the flight is evening: drop bags, walk the Stanley Park Seawall (10 km flat loop) or visit Granville Island Market.</p>
         </div>
       </li>
       <li class="act">
         <span class="act-dot"></span>
         <div>
           <p class="act-title">Return SUV at YVR + Fly Out <span class="act-tag">Per flight schedule</span></p>
-          <p class="act-body">YVR is well-signed for car returns. Allow 3 hrs before departure during peak August — rental return queues run long, and Canada customs/security adds time. Confirm one-way drop instructions with your rental company before Day 1.</p>
+          <p class="act-body">YVR is well-signed for car returns. Allow 3 hrs before departure during peak August — rental return queues run long in summer. Confirm one-way drop instructions with your rental company before Day 1.</p>
         </div>
       </li>
     </ul>
@@ -1163,7 +1238,7 @@
       </div>
       <div class="hl-card">
         <p class="hl-name">Peyto Lake</p>
-        <p class="hl-desc">Wolf-head shaped viewpoint from Bow Summit. The most photographed lake in Alberta — a 20-minute walk from the highway that pays back ten-fold.</p>
+        <p class="hl-desc">Wolf-head shaped viewpoint from Bow Summit. Most photographed lake in Alberta — a 20-minute walk from the highway that pays back ten-fold.</p>
       </div>
       <div class="hl-card">
         <p class="hl-name">Columbia Icefield</p>
@@ -1171,7 +1246,7 @@
       </div>
       <div class="hl-card">
         <p class="hl-name">Maligne Lake</p>
-        <p class="hl-desc">Spirit Island boat cruise — the glacier-framed island is one of the most reproduced landscape photos in Canada. Book the cruise months in advance for August.</p>
+        <p class="hl-desc">Spirit Island boat cruise — the glacier-framed island is one of the most reproduced landscape images in Canada. Book months in advance for August.</p>
       </div>
       <div class="hl-card">
         <p class="hl-name">Sea to Sky Hwy</p>
@@ -1182,23 +1257,23 @@
     <div class="tips-grid">
       <div class="tip-card">
         <p class="tip-card-title">Parks Canada Discovery Pass</p>
-        <p>Required for Banff, Jasper &amp; Glacier National Parks. Buy at parks.canada.ca. Group pass available. Covers all three parks on this trip — don't pay per-entry each day.</p>
+        <p>Required for Banff, Jasper &amp; Glacier National Parks. Buy at parks.canada.ca. Annual pass (~$75/adult) covers all three parks on this trip — don't pay per-entry each day.</p>
       </div>
       <div class="tip-card">
         <p class="tip-card-title">Pursuit Pass Coverage</p>
-        <p>Confirm your specific Pursuit package before going. Standard coverage: Banff Gondola, Glacier Skywalk + Athabasca Glacier Walk, Peak 2 Peak Gondola in Whistler.</p>
+        <p>Confirm your specific Pursuit package before going. Standard coverage: Banff Gondola, Columbia Icefield Glacier Skywalk + Athabasca Glacier Walk, Peak 2 Peak Gondola in Whistler.</p>
       </div>
       <div class="tip-card">
         <p class="tip-card-title">Bear Safety on Every Trail</p>
-        <p>Carry bear spray and know how to use it. Keep 100m from bears and wolves, 30m from elk and deer. In Jasper, elk walk in town — give them room and don't approach.</p>
+        <p>Carry bear spray and know how to use it. Keep 100m from bears and wolves, 30m from elk and deer. In Jasper, elk walk in town — give them space and don't approach.</p>
       </div>
       <div class="tip-card">
         <p class="tip-card-title">Pre-Trip Booking Checklist</p>
-        <p>Moraine Lake shuttle · Spirit Island cruise · Gondola reservations · All 4 Airbnbs/hotels · SUV one-way drop confirmed · Parks Canada Discovery Pass</p>
+        <p>Moraine Lake shuttle · Spirit Island cruise · Gondola reservations · All 4 Airbnbs/hotels confirmed · SUV one-way drop arranged · Parks Canada Discovery Pass purchased</p>
       </div>
       <div class="tip-card">
         <p class="tip-card-title">August Weather + Packing</p>
-        <p>Warm days (15–25°C), long daylight, wildflowers in bloom, all roads open. Evening temperatures drop quickly in the mountains. Pack a shell jacket, layers, and sunscreen. Rain possible any day.</p>
+        <p>Warm days (15–25°C), long daylight, wildflowers in bloom, all roads open. Evening temps drop fast in the mountains — pack a shell jacket, layers, and sunscreen. Rain possible any day.</p>
       </div>
       <div class="tip-card">
         <p class="tip-card-title">What's Included in This Trip</p>
@@ -1207,17 +1282,24 @@
     </div>
   </section>
 
+  <!-- Theme switcher -->
+  <div class="theme-switcher" role="group" aria-label="Color theme">
+    <button class="t-classic active" data-theme-val="classic" title="Classic" aria-pressed="true">☀</button>
+    <button class="t-dark"    data-theme-val="dark"    title="Dark"    aria-pressed="false">◐</button>
+    <button class="t-sepia"   data-theme-val="sepia"   title="Sepia"   aria-pressed="false">◑</button>
+  </div>
+
   <script>
     (function() {
       // ── Scroll-spy ──────────────────────────────────────────────
-      const sections = document.querySelectorAll('section[id]');
-      const links = document.querySelectorAll('.top-nav a');
-      const navHeight = 48;
+      var sections = document.querySelectorAll('section[id]');
+      var links = document.querySelectorAll('.top-nav a');
+      var navH = 48;
 
       function spy() {
-        let current = '';
+        var current = '';
         sections.forEach(function(s) {
-          if (s.getBoundingClientRect().top <= navHeight + 10) current = s.id;
+          if (s.getBoundingClientRect().top <= navH + 10) current = s.id;
         });
         links.forEach(function(a) {
           a.classList.toggle('active', a.getAttribute('href') === '#' + current);
@@ -1225,6 +1307,36 @@
       }
       window.addEventListener('scroll', spy, { passive: true });
       spy();
+
+      // ── Theme switcher ──────────────────────────────────────────
+      var STORE = 'rockies-theme';
+      var btns = document.querySelectorAll('.theme-switcher button');
+      var root = document.documentElement;
+
+      function applyTheme(val) {
+        if (val === 'classic') {
+          root.removeAttribute('data-theme');
+        } else {
+          root.setAttribute('data-theme', val);
+        }
+        btns.forEach(function(b) {
+          var active = b.getAttribute('data-theme-val') === val;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', String(active));
+        });
+        try { localStorage.setItem(STORE, val); } catch(_) {}
+      }
+
+      btns.forEach(function(b) {
+        b.addEventListener('click', function() {
+          applyTheme(b.getAttribute('data-theme-val'));
+        });
+      });
+
+      try {
+        var saved = localStorage.getItem(STORE);
+        if (saved) applyTheme(saved);
+      } catch(_) {}
     })();
   </script>
 </body>
