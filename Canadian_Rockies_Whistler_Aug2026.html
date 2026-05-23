@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whistler + Canadian Rockies — Aug 18–27, 2026</title>
+  <style>
+    :root {
+      --page-bg: #f4f5ef;
+      --surface: #ffffff;
+      --ink: #23312d;
+      --muted: #5f6b65;
+      --line: #d9e1da;
+      --spruce: #173f36;
+      --spruce-2: #204d43;
+      --evergreen: #235e4b;
+      --lake: #0c6b78;
+      --glacier: #e8f2ef;
+      --mist: #f0f6f2;
+      --amber: #b7792f;
+      --ember: #b84a2f;
+      --bc:      var(--evergreen);   /* Whistler / BC coast-mountain phase */
+      --canmore: #0c6b78;   /* Canmore / Banff phase */
+      --jasper:  #3f6f4e;   /* Jasper + Icefields phase */
+      --return:  #6b6f4a;   /* Return leg / foothills */
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--page-bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--spruce);
+      color: #fff;
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 0.04em;
+      font-weight: normal;
+      margin-bottom: 0.4rem;
+    }
+    header .subtitle {
+      font-size: 1.05rem;
+      color: #d4e9e2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── OVERVIEW STRIP ── */
+    .overview {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      background: var(--spruce-2);
+      color: #dcebe8;
+      font-size: 0.88rem;
+      text-align: center;
+    }
+    .overview-item {
+      padding: 0.9rem 2rem;
+      border-right: 1px solid rgba(220, 235, 232, 0.18);
+    }
+    .overview-item:last-child { border-right: none; }
+    .overview-item strong {
+      display: block;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 0.1rem;
+    }
+
+    /* ── BASES ── */
+    .bases {
+      max-width: 900px;
+      margin: 2.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+    .bases h2 {
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--spruce);
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid var(--evergreen);
+      padding-bottom: 0.4rem;
+    }
+    .base-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .base-card {
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 1.1rem 1.2rem;
+      border-left: 4px solid var(--color);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .base-card .nights {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color);
+      font-family: sans-serif;
+      margin-bottom: 0.2rem;
+    }
+    .base-card .town {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--spruce);
+    }
+    .base-card .dates {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-family: sans-serif;
+    }
+    .base-card .parks {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      font-family: sans-serif;
+    }
+
+    /* ── DAYS ── */
+    .days {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+    .days h2 {
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--spruce);
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--evergreen);
+      padding-bottom: 0.4rem;
+    }
+    .day-card {
+      background: var(--surface);
+      border-radius: 8px;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .day-header {
+      display: flex;
+      align-items: stretch;
+      background: var(--color);
+    }
+    .day-num {
+      background: rgba(0,0,0,0.2);
+      color: #fff;
+      font-family: sans-serif;
+      font-weight: bold;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.7rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 70px;
+      text-align: center;
+    }
+    .day-num .dayno { font-size: 1.5rem; line-height: 1; }
+    .day-title-block {
+      padding: 0.7rem 1.2rem;
+      color: #fff;
+      flex: 1;
+    }
+    .day-title-block .date {
+      font-family: sans-serif;
+      font-size: 0.8rem;
+      opacity: 0.85;
+      letter-spacing: 0.05em;
+    }
+    .day-title-block .title {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    .day-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0.6rem 1rem;
+    }
+    .badge {
+      font-family: sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.55rem;
+      border-radius: 20px;
+      color: #fff;
+      white-space: nowrap;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    @media print {
+      .day-badges { padding: 0.5rem 0.8rem; }
+      .badge { font-size: 0.62rem; padding: 0.18rem 0.45rem; }
+    }
+    .day-body {
+      padding: 1.2rem 1.4rem;
+    }
+    .day-body .base-tag {
+      font-family: sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color);
+      margin-bottom: 0.7rem;
+    }
+
+    /* schedule blocks */
+    .schedule { list-style: none; }
+    .schedule li {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+    }
+    .schedule li .time {
+      font-family: sans-serif;
+      font-size: 0.75rem;
+      color: var(--muted);
+      min-width: 60px;
+      padding-top: 0.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .schedule li .act { flex: 1; }
+    .schedule li .act strong { color: var(--spruce); }
+
+    /* flags */
+    .flag {
+      display: inline-block;
+      font-family: sans-serif;
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-left: 0.3rem;
+      vertical-align: middle;
+    }
+    .flag-book { background: var(--ember); color: #fff; }
+    .flag-early { background: var(--amber); color: #fff; }
+    .flag-note { background: var(--evergreen); color: #fff; }
+
+    .day-note {
+      background: var(--mist);
+      border-left: 3px solid var(--evergreen);
+      padding: 0.6rem 0.9rem;
+      font-size: 0.88rem;
+      font-family: sans-serif;
+      color: var(--ink);
+      margin-top: 0.8rem;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* ── BOOKINGS PANEL ── */
+    .bookings {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+    .bookings h2 {
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--spruce);
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid var(--evergreen);
+      padding-bottom: 0.4rem;
+    }
+    .booking-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: sans-serif;
+      font-size: 0.88rem;
+      background: var(--surface);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .booking-table th {
+      background: var(--spruce);
+      color: #fff;
+      text-align: left;
+      padding: 0.6rem 1rem;
+      letter-spacing: 0.05em;
+    }
+    .booking-table td {
+      padding: 0.55rem 1rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .booking-table tr:last-child td { border-bottom: none; }
+    .booking-table tr:nth-child(even) { background: var(--glacier); }
+    .urgent { color: var(--ember); font-weight: bold; }
+
+    /* ── TIPS ── */
+    .tips {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+    .tips h2 {
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--spruce);
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid var(--evergreen);
+      padding-bottom: 0.4rem;
+    }
+    .tip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .tip-card {
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      font-family: sans-serif;
+      font-size: 0.88rem;
+    }
+    .tip-card h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--spruce);
+      margin-bottom: 0.5rem;
+      font-family: sans-serif;
+    }
+    .tip-card p { color: var(--muted); line-height: 1.55; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    a { color: var(--lake); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    @page {
+      size: 1400px 1980px;
+      margin: 0;
+    }
+    @media print {
+      body { font-size: 15px; width: 1400px; }
+      .bases, .days, .bookings, .tips {
+        max-width: 1320px;
+        width: 1320px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 40px;
+      }
+      .base-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+      .tip-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .overview {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+      }
+      .overview-item {
+        padding: 0.9rem 2rem;
+        flex: 1;
+      }
+    }
+
+    /* COLOUR PALETTE — one per phase, defined in the root nature tokens above */
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Whistler + Canadian Rockies</h1>
+  <div class="subtitle">August 18 – 27, 2026 &nbsp;·&nbsp; SUV + Airbnbs &nbsp;·&nbsp; 10 Days</div>
+</header>
+
+<div class="overview">
+  <div class="overview-item"><strong>Fly in</strong>Vancouver YVR · Aug 18</div>
+  <div class="overview-item"><strong>Fly out</strong>Calgary YYC · Aug 27</div>
+  <div class="overview-item"><strong>Parks</strong>Banff · Yoho · Jasper</div>
+  <div class="overview-item"><strong>Highlights</strong>Whistler · Sea to Sky · Icefields Pkwy</div>
+  <div class="overview-item"><strong>Pursuit Pass</strong>All 5 attractions</div>
+  <div class="overview-item"><strong>Rental</strong>One-way YVR → YYC</div>
+</div>
+
+<!-- BASES -->
+<section class="bases">
+  <h2>Bases</h2>
+  <div class="base-grid">
+
+    <div class="base-card" style="--color: var(--bc)">
+      <div class="nights">2 nights</div>
+      <div class="town">Whistler, BC</div>
+      <div class="dates">Aug 18 – 20</div>
+      <div class="parks">Whistler Village or Creekside. Book ahead — August is peak season and fills fast.</div>
+    </div>
+
+    <div class="base-card" style="--color: var(--bc)">
+      <div class="nights">1 night</div>
+      <div class="town">Revelstoke, BC</div>
+      <div class="dates">Aug 20 – 21</div>
+      <div class="parks">Walkable mountain town between Mt Revelstoke and Glacier National Parks. Good food, craft beer, Columbia River views.</div>
+    </div>
+
+    <div class="base-card" style="--color: var(--canmore)">
+      <div class="nights">3 nights</div>
+      <div class="town">Canmore, AB</div>
+      <div class="dates">Aug 21 – 24</div>
+      <div class="parks">Bow Valley base for Moraine Lake, Lake Louise, and Banff. Prefer downtown or Bow River area.</div>
+    </div>
+
+    <div class="base-card" style="--color: var(--jasper)">
+      <div class="nights">2 nights</div>
+      <div class="town">Jasper area, AB</div>
+      <div class="dates">Aug 24 – 26</div>
+      <div class="parks">
+        <a href="https://www.pyramidlakeresort.com">Pyramid Lake Resort</a>,
+        <a href="https://www.tekarra.com">Tekarra Lodge</a>,
+        <a href="https://www.pinebungalows.com">Pine Bungalows</a>,
+        <a href="https://www.overlandermountainlodge.com">Overlander Mountain Lodge</a>
+      </div>
+    </div>
+
+    <div class="base-card" style="--color: var(--return)">
+      <div class="nights">1 night</div>
+      <div class="town">Canmore, AB</div>
+      <div class="dates">Aug 26 – 27</div>
+      <div class="parks">Final night before flying home from Calgary. Downtown Canmore walk, celebratory dinner.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DAYS -->
+<section class="days">
+  <h2>Day by Day</h2>
+
+  <!-- DAY 1 -->
+  <div class="day-card" style="--color: var(--bc)">
+    <div class="day-header">
+      <div class="day-num"><span class="dayno">1</span>Day</div>
+      <div class="day-title-block">
+        <div class="date">Sunday, Aug 18</div>
+        <div class="title">Arrive Vancouver → Sea to Sky → Whistler</div>
+      </div>
+      <div class="day-badges"><span class="badge">▸ Drive</span><span class="badge">▸ Walk</span></div>
+    </div>
+    <div class="day-body">
+      <div class="base-tag">BASE: Whistler, BC &nbsp;·&nbsp; Drive: ~2 hrs Vancouver → Whistler</div>
+      <ul class="schedule">
+        <li><span class="time">Arrive</span><span class="act">Land at <strong>Vancouver YVR</strong> — pick up your one-way rental SUV. The car return is Calgary YYC at the end of the trip.</span></li>
+        <li><span class="time">On the road</span><span class="act">Drive <strong>Sea to Sky Highway (Hwy 99)</strong> north toward Whistler — 125 km, one of Canada's best coastal mountain drives. The road rises out of the city through rainforest, hugs the ocean at Horseshoe Bay, then climbs past granite cliffs into the mountains. Keep eyes open for bears and eagles.</span></li>
+        <li><span class="time">En route</span><span class="act"><strong>Shannon Falls</strong> (Squamish) — quick 10-min pull-off to a 335m waterfall, the third highest in BC. Right off the highway. Optional: view of <strong>Stawamus Chief</strong>, a massive granite monolith above Squamish.</span></li>
+        <li><span class="time">Afternoon</span><span class="act">Arrive <strong>Whistler</strong>. Check in. Walk the <strong>Village Stroll</strong> — the car-free pedestrian village at the base of both mountains. Restaurants, shops, alpine atmosphere. Get your bearings and pick up any supplies.</span></li>
+        <li><span class="time">Dinner</span><span class="act"><em>Araxi Restaurant</em> (upscale, iconic Whistler), <em>Quattro</em> (Italian, courtyard), or <em>The Wildflower</em> at the Fairmont Chateau Whistler.</span></li>
+        <li><span class="time">Tonight</span><span class="act">Book Whistler Gondola + Peak 2 Peak for tomorrow if not already reserved — <a href="https://www.whistlerblackcomb.com" target="_blank">whistlerblackcomb.com</a>. Book a morning slot. Summer operations run daily through August.</span></li>
+      </ul>
+      <div class="day-note">▸ Hwy 99 between Squamish and Whistler is breathtaking but has no services — fill the tank before you leave Vancouver. The drive is only 2 hours but you'll want to stop for photos.</div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-card" style="--color: var(--bc)">
+    <div class="day-header">
+      <div class="day-num"><span class="dayno">2</span>Day</div>
+      <div class="day-title-block">
+        <div class="date">Monday, Aug 19</div>
+        <div class="title">Whistler — Peak 2 Peak & The Village</div>
+      </div>
+      <div class="day-badges"><span class="badge">★ Gondola</span><span class="badge">▸ Walk</span></div>
+    </div>
+    <div class="day-body">
+      <div class="base-tag">BASE: Whistler, BC</div>
+      <ul class="schedule">
+        <li><span class="time">8:00 am</span><span class="act">Breakfast — <em>Purebread</em> (best bakery in Whistler, lineup worth it), <em>Tractor Everyday Food</em>, or your hotel. Fuel up.</span></li>
+        <li><span class="time">9:00 am</span><span class="act"><strong>Whistler Gondola</strong> — ride up to Whistler Mountain (Roundhouse Lodge, 1,850m). Views of the glacier, peaks, and valley open up as you ascend. Walk around the Roundhouse area — grab a coffee with a view.</span></li>
+        <li><span class="time">10:00 am</span><span class="act"><strong>Peak 2 Peak Gondola</strong> <span class="flag flag-note">Don't Miss</span> — the signature Whistler experience. A 4.4 km cable car connects Whistler Mountain to Blackcomb Mountain, spanning a world-record 3 km open span 436 m above the valley floor. The views of glaciers, alpine meadows, and the valley are extraordinary. Allow 45–60 min for the crossing and back (or stay on Blackcomb).</span></li>
+        <li><span class="time">11:00 am</span><span class="act"><strong>Blackcomb Mountain summit</strong> — <strong>Horstman Glacier viewpoint</strong> is an easy 10-min walk from the top station. The glacier sits at 2,440m and is still skiable in summer. The alpine meadow views are as good as anything you'll see in the Rockies.</span></li>
+        <li><span class="time">12:30 pm</span><span class="act">Ride gondola back down to Whistler Village. Lunch — <em>21 Steps Kitchen</em> (rooftop patio) or <em>La Cantina</em> (tacos in the village). Pick up trail snacks at a grocery for tomorrow's long drive.</span></li>
+        <li><span class="time">2:00 pm</span><span class="act"><strong>Valley Trail</strong> — the 40 km paved trail network connects Whistler's neighbourhoods through forest and along Lost Lake. Walk or rent bikes (15–30 min is enough for a taste). Flat, easy, beautiful.</span></li>
+        <li><span class="time">3:30 pm</span><span class="act">Optional: <strong>Audain Art Museum</strong> (45 min) — world-class collection of Northwest Coast Indigenous art and BC landscape painting. One of the best small art museums in Canada.</span></li>
+        <li><span class="time">6:30 pm</span><span class="act">Dinner — <em>Alta Bistro</em> (farm-to-table, excellent), <em>Peaked Pies</em> (Australian meat pies, casual), or back to Araxi if you didn't go last night.</span></li>
+        <li><span class="time">Before bed</span><span class="act"><strong>Set your alarm for 6:50 am tomorrow</strong> <span class="flag flag-book">Critical Action</span> — Moraine Lake shuttles for Aug 22 open on <strong>Aug 20 at 7:00 am PDT (= 8:00 am MDT)</strong>. You must book the moment slots open at <a href="https://reservation.pc.gc.ca" target="_blank">reservation.pc.gc.ca</a>. Target the 9:30 am departure from Lake Louise Park &amp; Ride. Do not miss this window.</span></li>
+      </ul>
+      <div class="day-note">▸ Peak 2 Peak tickets: book in advance at whistlerblackcomb.com (the gondola combo is around CA$85/person in summer). Morning is best — cloud can roll in by afternoon.</div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-card" style="--color: var(--bc)">
+    <div class="day-header">
+      <div class="day-num"><span class="dayno">3</span>Day</div>
+      <div class="day-title-block">
+        <div class="date">Tuesday, Aug 20</div>
+        <div class="title">Whistler → Revelstoke — The BC Interior Drive</div>
+      </div>
+      <div class="day-badges"><span class="badge">▸ Drive</span></div>
+    </div>
+    <div class="day-body">
+      <div class="base-tag">BASE: Revelstoke, BC &nbsp;·&nbsp; Drive: ~6 hrs Whistler → Revelstoke</div>
+      <ul class="schedule">
+        <li><span class="time">6:50 am</span><span class="act"><strong>BOOK MORAINE LAKE SHUTTLE NOW</strong> <span class="flag flag-book">Do This First</span> — Aug 22 slots open today at 7:00 am PDT. Go to <a href="https://reservation.pc.gc.ca" target="_blank">reservation.pc.gc.ca</a> and book the 9:30 am departure from Lake Louise Park &amp; Ride for Aug 22. Slots go in minutes.</span></li>
+        <li><span class="time">8:00 am</span><span class="act">Breakfast — grab pastries from <em>Purebread</em> to go, or a quick sit-down at your hotel. Pack snacks and fill water bottles; services are limited through the BC interior.</span></li>
+        <li><span class="time">8:30 am</span><span class="act">Depart Whistler north on <strong>Hwy 99</strong> through Pemberton — the valley opens up into ranch land backed by enormous peaks. A completely different landscape from yesterday. Continue toward Lillooet, then Cache Creek.</span></li>
+        <li><span class="time">10:00 am</span><span class="act">Optional: <strong>Nairn Falls</strong> (Pemberton, 15-min stop) — short trail to a powerful waterfall on the Lillooet River. Worth it if energy is up; skip if you want to make time.</span></li>
+        <li><span class="time">12:00 pm</span><span class="act">Lunch in <strong>Kamloops</strong> or Cache Creek — practical fuel stop. Kamloops has good options including downtown restaurants on the Thompson River.</span></li>
+        <li><span class="time">1:00 pm</span><span class="act">East on the <strong>Trans-Canada (Hwy 1)</strong> through the Thompson River canyon and into the Columbia Mountains. The terrain shifts from dry grassland to dramatic forested gorges as you approach Revelstoke. Eagle Pass crossing is spectacular.</span></li>
+        <li><span class="time">4:00 pm</span><span class="act">Arrive <strong>Revelstoke</strong>. Check in. This is a proper mountain town on the Columbia River, wedged between Mt Revelstoke National Park to the north and Glacier National Park to the east. The main street is walkable with excellent food.</span></li>
+        <li><span class="time">5:30 pm</span><span class="act">Walk <strong>Revelstoke's Victoria Road</strong> — the compact main street. Pick up any groceries or trail snacks needed for the next few days of Alberta driving.</span></li>
+        <li><span class="time">7:00 pm</span><span class="act">Dinner — <em>Quartermaster Restaurant</em>, <em>La Baguette</em> (French bistro), or <em>Dose Coffee &amp; Tap</em> (craft beer, casual).</span></li>
+      </ul>
+      <div class="day-note">▸ Today is a long drive day — build in flexibility. The scenery through the BC interior is genuinely beautiful (Thompson River canyon, Columbia River valley, Eagle Pass) but this is windshield time, not stop-and-explore time. Good podcasts/playlist day.</div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day-card" style="--color: var(--canmore)">
+    <div class="day-header">
+      <div class="day-num"><span class="dayno">4</span>Day</div>
+      <div class="day-title-block">
+        <div class="date">Wednesday, Aug 21</div>
+        <div class="title">Revelstoke → Golden Skybridge → Yoho → Canmore</div>
+      </div>
+      <div class="day-badges"><span class="badge">★ Activity</span><span class="badge">▸ Walk</span><span class="badge">▸ Drive</span></div>
+    </div>
+    <div class="day-body">
+      <div class="base-tag">MOVE TO: Canmore, AB &nbsp;·&nbsp; Drive: ~4.5 hrs moving, stops add ~3 hrs</div>
+      <ul class="schedule">
+        <li><span class="time">8:00 am</span><span class="act">Breakfast in Revelstoke — <em>Conversations Coffee</em> or <em>Dose</em>. Check out.</span></li>
+        <li><span class="time">8:30 am</span><span class="act">Drive east on <strong>Trans-Canada (Hwy 1)</strong> through <strong>Glacier National Park</strong> — Rogers Pass. Dramatic mountain scenery as the highway crests the pass at 1,330m. No need to stop (save time), but the drive through the pass is itself excellent. ~1.5 hrs to Golden.</span></li>
+        <li><span class="time">10:00 am</span><span class="act"><strong>Golden Skybridge</strong> <span class="flag flag-note">Pursuit Pass</span> — two suspension bridges spanning a deep canyon above the Columbia River with Rocky Mountain views. The longer bridge is among the highest in North America. The shorter bridge has a zip line option if anyone is feeling brave. Allow 90 min. Book your time slot at <a href="https://goldenbc.ca/skybridge" target="_blank">goldenbc.ca/skybridge</a>.</span></li>
+        <li><span class="time">11:30 am</span><span class="act">Continue east on Trans-Canada into <strong>Yoho National Park</strong> (Field, BC). You've crossed into the Alberta Rockies geological zone — the peaks change character immediately.</span></li>
+        <li><span class="time">12:00 pm</span><span class="act"><strong>Spiral Tunnels viewpoint</strong> — quick pull-off above Field on the Trans-Canada. The CPR railway loops through the mountains in a double figure-eight spiral to safely descend the grade. If a freight train is actively passing through, it's extraordinary engineering in dramatic scenery. 10 min stop.</span></li>
+        <li><span class="time">12:15 pm</span><span class="act"><strong>Natural Bridge</strong> — 10-min stop. The Kicking Horse River has carved through solid quartzite, forming a natural arch with brilliant glacial green water rushing beneath. Just off the road near the Emerald Lake junction.</span></li>
+        <li><span class="time">12:30 pm</span><span class="act"><strong>Emerald Lake</strong> — the most intensely coloured lake in Yoho. A deep tropical green ringed by forest and the President Range. Lunch at <em>Emerald Lake Lodge</em> restaurant (dining room, or grab from the café) or your own picnic. Short lakeshore walk (30 min, flat). Canoe rentals if anyone wants to paddle.</span></li>
+        <li><span class="time">2:30 pm</span><span class="act">Continue east on Trans-Canada through Lake Louise and east to Canmore. 2 hrs.</span></li>
+        <li><span class="time">4:30 pm</span><span class="act">Arrive <strong>Canmore</strong>. Check in — three nights here. Drop bags, walk downtown along the creek.</span></li>
+        <li><span class="time">6:30 pm</span><span class="act">Dinner — <em>Crazyweed Kitchen</em> or <em>Rocky Mountain Flatbread</em>.</span></li>
+      </ul>
+      <div class="day-note">▸ Yoho is a perfect drive-through park — the best stops are right off the road or a few minutes' walk. Don't try to do Takakkaw Falls today (Yoho Valley Road adds 30 min each way) — save your energy for tomorrow.</div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day-card" style="--color: var(--canmore)">
+    <div class="day-header">
+      <div class="day-num"><span class="dayno">5</span>Day</div>
+      <div class="day-title-block">
+        <div class="date">Thursday, Aug 22</div>
+        <div class="title">Moraine Lake & Lake Louise — The Iconic Day</div>
+      </div>
+      <div class="day-badges"><span class="badge">⚑ Shuttle</span><span class="badge">▸ Walk</span></div>
+    </div>
+    <div class="day-body">
+      <div class="base-tag">BASE: Canmore, AB</div>
+      <ul class="schedule">
+        <li><span class="time">8:00 am</span><span class="act">Breakfast at Airbnb or <em>Communitea</em>. Pack snacks and water — no food at Moraine Lake itself.</span></li>
+        <li><span class="time">8:30 am</span><span class="act">Drive to Lake Louise Park &amp; Ride (~45 min from Canmore). Personal vehicles are not permitted at Moraine Lake or Lake Louise — all visitors use shuttles.</span></li>
+        <li><span class="time">9:15 am</span><span class="act"><strong>Lake Louise Park &amp; Ride</strong> — park here (free with shuttle reservation). Board the shuttle to Moraine Lake.</span></li>
+        <li><span class="time">9:30 am</span><span class="act">Shuttle departs for <strong>Moraine Lake</strong>.</span></li>
+        <li><span class="time">10:00 am</span><span class="act">Arrive <strong>Moraine Lake</strong> — one of the most intense lake-and-peak scenes on the planet. The Valley of the Ten Peaks rises directly above a deep turquoise lake fed by glacial meltwater. Walk the <strong>Rockpile trail</strong> (15 min, 30m gain) for the elevated postcard view. Spend time at the lakeshore. It is as good as it looks.</span></li>
+        <li><span class="time">1:00 pm</span><span class="act">Shuttle back to Park &amp; Ride. Board Lake Louise shuttle.</span></li>
+        <li><span class="time">1:30 pm</span><span class="act"><strong>Lake Louise</strong> — the classic glacier lake beneath Victoria Glacier. Walk the flat lakeshore trail (~1 hr loop). Lunch at the <em>Fairmont Lake Louise</em> Lakeview Lounge terrace or picnic on the shore. The afternoon light hits the Fairmont façade beautifully.</span></li>
+        <li><span class="time">4:00 pm</span><span class="act">Shuttle back. Drive to Canmore (~45 min).</span></li>
+        <li><span class="time">5:30 pm</span><span class="act">Canmore townsite walk — <strong>Bow River pedestrian bridge</strong>, Three Sisters view from downtown. Best mountain backdrop in town.</span></li>
+        <li><span class="time">6:30 pm</span><span class="act">Dinner — <em>Gaucho Brazilian BBQ</em> (all-you-can-eat churrasqueira) or <em>The Blake</em> (upscale, excellent wine list).</span></li>
+      </ul>
+      <div class="day-note">▸ Shuttle slots were booked Aug 20 — you're set. Note that Moraine Lake is significantly more dramatic than Lake Louise; plan your best energy for the morning. The afternoon Lake Louise visit is gentler and great in softer light.</div>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day-card" style="--color: var(--canmore)">
+    <div class="day-header">
+      <div class="day-num"><span class="dayno">6</span>Day</div>
+      <div class="day-title-block">
+        <div class="date">Friday, Aug 23</div>
+        <div class="title">Banff — Johnston Canyon &amp; Gondola</div>
+      </div>
+      <div class="day-badges"><span class="badge">▸ Walk</span><span class="badge">★ Gondola</span></div>
+    </div>
+    <div class="day-body">
+      <div class="base-tag">BASE: Canmore, AB</div>
+      <ul class="schedule">
+        <li><span class="time">8:00 am</span><span class="act">Breakfast at Airbnb. Drive via <strong>Bow Valley Parkway (Hwy 1A)</strong> — the quiet, scenic alternative to the Trans-Canada. Slower, forested, better for wildlife sightings.</span></li>
+        <li><span class="time">9:30 am</span><span class="act"><strong>Johnston Canyon</strong> — one of Banff's most accessible and dramatic walks. The paved canyon trail clings to the cliff face on metal catwalk suspended above the rushing Kicking Horse River. <strong>Lower Falls</strong> (1.1 km, 20 min, easy) — a turquoise curtain of water in a narrow slot canyon. <strong>Upper Falls</strong> (2.7 km from trailhead, 30 min more) — taller and wilder. Both together take about 1.5 hrs return. Do both.</span></li>
+        <li><span class="time">11:15 am</span><span class="act">Drive to <strong>Banff townsite</strong> (20 min).</span></li>
+        <li><span class="time">12:00 pm</span><span class="act">Lunch in Banff — <em>Wild Flour Bakery</em> (sandwiches, excellent), <em>Balkan Restaurant</em> (Greek, casual), or <em>Juniper Bistro</em> (patio with mountain views).</span></li>
+        <li><span class="time">1:30 pm</span><span class="act"><strong>Banff Gondola</strong> <span class="flag flag-note">Pursuit Pass</span> — 8-min gondola to the summit of Sulphur Mountain (2,281m). Walk the <strong>Skywalk boardwalk</strong> along the ridge (1.6 km, flat, 360° panorama). On a clear day you can see seven mountain ranges. Take the gondola back down. Allow 1.5 hrs.</span></li>
+        <li><span class="time">3:30 pm</span><span class="act"><strong>Vermilion Lakes</strong> — a 10-min drive west of Banff on Hwy 1A. Three shallow lakes reflecting Mt Rundle and the Banff townsite skyline. Classic mountain photography. Short flat walk or simply drive the road.</span></li>
+        <li><span class="time">4:30 pm</span><span class="act">Drive back to Canmore (20 min). Last night here — pack bags tonight for the Jasper move tomorrow.</span></li>
+        <li><span class="time">6:30 pm</span><span class="act">Dinner — <em>Brazen</em> (steakhouse, excellent) or <em>Rocky Mountain Flatbread</em> (wood-fired, family-friendly).</span></li>
+      </ul>
+      <div class="day-note">▸ Banff Gondola is included in the Pursuit Pass — no separate ticket needed. The Sulphur Mountain summit is cold even in August; bring a layer. Johnston Canyon is one of the few walks the entire crew will love regardless of fitness level.</div>
+    </div>
+  </div>
+
+  <!-- DAY 7 -->
+  <div class="day-card" style="--color: var(--jasper)">
+    <div class="day-header">
+      <div class="day-num"><span class="dayno">7</span>Day</div>
+      <div class="day-title-block">
+        <div class="date">Saturday, Aug 24</div>
+        <div class="title">Canmore → Icefields Pkwy North → Jasper</div>
+      </div>
+      <div class="day-badges"><span class="badge">▸ Drive</span><span class="badge">▸ Walk</span></div>
+    </div>
+    <div class="day-body">
+      <div class="base-tag">MOVE TO: Jasper area, AB &nbsp;·&nbsp; Drive: ~5 hrs with stops (Canmore → Jasper via Icefields Pkwy)</div>
+      <ul class="schedule">
+        <li><span class="time">8:00 am</span><span class="act">Breakfast at Airbnb. Check out. Pack for 2 nights in Jasper.</span></li>
+        <li><span class="time">8:30 am</span><span class="act">Drive north on Trans-Canada to Lake Louise (45 min), then north on <strong>Hwy 93 — Icefields Parkway</strong>. You'll drive it southbound fully on Day 9; today is a scenic transit north hitting the southern highlights.</span></li>
+        <li><span class="time">9:45 am</span><span class="act"><strong>Bow Lake</strong> — pull off, short walk to the lakeshore (15 min). Glaciers reflected in a flat alpine lake beneath Crowfoot Mountain. Classic Parkway view.</span></li>
+        <li><span class="time">10:10 am</span><span class="act"><strong>Peyto Lake viewpoint</strong> — paved walk (800m, 70m gain, 20 min). The wolf-head-shaped turquoise lake viewed from high above. One of the most photographed scenes in Canada.</span></li>
+        <li><span class="time">10:45 am</span><span class="act">Continue north. The Parkway climbs through increasingly dramatic terrain — Weeping Wall, Big Bend, Columbia Icefield approach.</span></li>
+        <li><span class="time">12:00 pm</span><span class="act">Lunch at <strong>Columbia Icefield Discovery Centre</strong> cafeteria (only food option on the Parkway). From the parking area, you can see the toe of the Athabasca Glacier from the road — a free taste of what Day 9 holds. Allow 45 min.</span></li>
+        <li><span class="time">1:00 pm</span><span class="act">Continue north. Sunwapta Valley, Sunwapta Falls viewpoint (save the stop for Day 9 southbound).</span></li>
+        <li><span class="time">2:30 pm</span><span class="act"><strong>Athabasca Falls</strong> — just south of Jasper. 10-min walk to the falls where the Athabasca River plunges through a narrow quartzite gorge. Powerful and close — among the most impressive short stops in Jasper.</span></li>
+        <li><span class="time">3:00 pm</span><span class="act">Detour onto <strong>Hwy 93A</strong> south → <strong>Edith Cavell Road</strong> (14 km winding mountain road). Park at the trailhead. Walk the <strong>Path of the Glacier</strong> (1.6 km loop, flat, 30 min) — a remarkable short walk across a glacial moraine with Angel Glacier hanging above. Interpretive markers show the ice retreat decade by decade. No hike required — all the drama is right there.</span></li>
+        <li><span class="time">5:00 pm</span><span class="act">Arrive <strong>Jasper</strong> townsite. Check in to your cabin or lodge.</span></li>
+        <li><span class="time">7:00 pm</span><span class="act">Dinner — <em>Downstream Bar &amp; Grill</em> (classic Jasper) or <em>Terra Restaurant</em> (upscale, locally sourced).</span></li>
+      </ul>
+      <div class="day-note">▸ You'll drive the Icefields Pkwy in both directions across the trip — northbound today hits the southern scenic viewpoints (Bow Lake, Peyto); southbound on Day 9 focuses on the glacier activities (Icefield Adventure, Skywalk, Sunwapta). They feel like genuinely different experiences.</div>
+    </div>
+  </div>
+
+  <!-- DAY 8 -->
+  <div class="day-card" style="--color: var(--jasper)">
+    <div class="day-header">
+      <div class="day-num"><span class="dayno">8</span>Day</div>
+      <div class="day-title-block">
+        <div class="date">Sunday, Aug 25</div>
+        <div class="title">Jasper — Maligne Lake &amp; Spirit Island Cruise</div>
+      </div>
+      <div class="day-badges"><span class="badge">⛵ Cruise</span><span class="badge">▸ Walk</span></div>
+    </div>
+    <div class="day-body">
+      <div class="base-tag">BASE: Jasper area, AB</div>
+      <ul class="schedule">
+        <li><span class="time">8:00 am</span><span class="act">Breakfast at <em>Bear's Paw Bakery</em> in Jasper townsite (legendary cinnamon buns and coffee) or at your cabin. Pack snacks.</span></li>
+        <li><span class="time">8:30 am</span><span class="act">Drive <strong>Maligne Road</strong> (48 km, ~50 min) along Maligne Canyon and toward the largest natural lake in the Canadian Rockies.</span></li>
+        <li><span class="time">9:30 am</span><span class="act">Arrive <strong>Maligne Lake</strong>.</span></li>
+        <li><span class="time">10:00 am</span><span class="act"><strong>Spirit Island Boat Cruise</strong> <span class="flag flag-note">Pursuit Pass</span> — a 90-min narrated cruise on Maligne Lake's emerald-green water to <strong>Spirit Island</strong>, a tiny forested island in the shadow of serrated glacier peaks. One of the most iconic views in Canada. Book ahead at <a href="https://www.malignelake.com" target="_blank">malignelake.com</a>. Pursuit Pass covers this.</span></li>
+        <li><span class="time">11:30 am</span><span class="act">Back at the dock. Walk the <strong>lakeside trail</strong> (flat, easy, 20 min each direction). The lake stretches 22 km into the mountains — you can see it all from the trailhead.</span></li>
+        <li><span class="time">12:30 pm</span><span class="act">Drive back to Jasper (50 min).</span></li>
+        <li><span class="time">1:30 pm</span><span class="act">Lunch in Jasper townsite — <em>Coco's Café</em> (excellent coffee and food), <em>Jasper Brewing Co.</em> (pub food and local beer), or <em>Patricia Street Deli</em> (quick and good).</span></li>
+        <li><span class="time">3:00 pm</span><span class="act"><strong>Pyramid Lake</strong> — 7 km north of Jasper on Pyramid Lake Road. Walk the causeway to <strong>Pyramid Island</strong> (flat, 15 min), a small island connected to the lakeshore by a wooden bridge. The lake perfectly reflects Pyramid Mountain. Canoe and kayak rentals available at the resort dock.</span></li>
+        <li><span class="time">4:30 pm</span><span class="act">Optional: <strong>Miette Hot Springs</strong> — the hottest natural hot springs in the Canadian Rockies (54°C at source, cooled for the pools). 63 km round trip from Jasper. Perfect if anyone wants to soak after the cruise day. Bring a bathing suit.</span></li>
+        <li><span class="time">7:00 pm</span><span class="act">Final Jasper dinner — <em>Fiddle River Restaurant</em> (seafood and game, excellent) or <em>Something Else Restaurant</em> (Greek-Canadian, local favourite). Pack bags tonight for checkout tomorrow.</span></li>
+      </ul>
+      <div class="day-note">▸ Maligne Lake cruise is the best single Jasper activity for a group that wants dramatic scenery without a long hike. The Spirit Island view is worth it. Book the cruise in advance — August slots fill up. If you book Miette Hot Springs, note it closes at 9pm in summer.</div>
+    </div>
+  </div>
+
+  <!-- DAY 9 -->
+  <div class="day-card" style="--color: var(--jasper)">
+    <div class="day-header">
+      <div class="day-num"><span class="dayno">9</span>Day</div>
+      <div class="day-title-block">
+        <div class="date">Monday, Aug 26</div>
+        <div class="title">Icefields Parkway — Jasper to Canmore</div>
+      </div>
+      <div class="day-badges"><span class="badge">★ Activity</span><span class="badge">▸ Walk</span><span class="badge">▸ Drive</span></div>
+    </div>
+    <div class="day-body">
+      <div class="base-tag">MOVE TO: Canmore, AB &nbsp;·&nbsp; Drive: 5–6 hrs moving, all day with stops</div>
+      <ul class="schedule">
+        <li><span class="time">8:00 am</span><span class="act">Breakfast at cabin or <em>Bear's Paw Bakery</em>. Pack snacks and water for the road — the Columbia Icefield cafeteria is the only real lunch stop on the Parkway today.</span></li>
+        <li><span class="time">8:30 am</span><span class="act">Check out. Drive south on <strong>Icefields Parkway (Hwy 93S)</strong> — 230 km of the greatest mountain drive on earth. Today you cover the heart of it: the glacier section.</span></li>
+        <li><span class="time">10:30 am</span><span class="act"><strong>Sunwapta Falls</strong> — quick 15-min stop. A powerful two-tiered canyon waterfall where the Sunwapta River plunges through turquoise rock. Just off the Parkway south of Jasper.</span></li>
+        <li><span class="time">12:00 pm</span><span class="act">Lunch at the <strong>Columbia Icefield Discovery Centre</strong> cafeteria. Basic but it's the only food on the Parkway. Fuel up.</span></li>
+        <li><span class="time">1:00 pm</span><span class="act"><strong>Columbia Icefield Adventure</strong> <span class="flag flag-note">Pursuit Pass</span> — board a massive Ice Explorer all-terrain vehicle and ride out onto the surface of the <strong>Athabasca Glacier</strong>. You step off and walk on ice that is 300 years old and 300 m thick. This is a fundamentally different experience from viewing the glacier from the road. Allow 1.5 hrs. Book your departure time slot in advance at <a href="https://www.banffjaspercollection.com/attractions/columbia-icefield-adventure/" target="_blank">banffjaspercollection.com</a> — required even with Pursuit Pass.</span></li>
+        <li><span class="time">2:30 pm</span><span class="act"><strong>Columbia Icefield Skywalk</strong> <span class="flag flag-note">Pursuit Pass</span> — a glass-floored platform cantilevered 280 m above the Sunwapta Valley, a short drive south of the Icefield Centre. Interpretive trail explains the glacier geology. Allow 45 min.</span></li>
+        <li><span class="time">4:00 pm</span><span class="act">Continue south. Bow Lake and Peyto Lake already visited northbound on Day 7 — continue through to Canmore without stopping (or a quick photo stop if desired).</span></li>
+        <li><span class="time">5:30 pm</span><span class="act">Drive through Lake Louise, Trans-Canada east to <strong>Canmore</strong> (~1 hr from Bow Lake). Check in — one final night.</span></li>
+        <li><span class="time">7:00 pm</span><span class="act">Celebratory dinner — <em>Tavern 1883</em> or <em>The Blake</em>. Final walk along the Bow River pedestrian bridge. The trip is complete.</span></li>
+      </ul>
+      <div class="day-note">▸ Non-negotiables today: Icefield Adventure, Skywalk. Book the Adventure time slot well in advance — it fills independently of the Pursuit Pass. If running late, Skywalk can be done quickly (45 min). Bow Lake and Peyto are already checked off from Day 7.</div>
+    </div>
+  </div>
+
+  <!-- DAY 10 -->
+  <div class="day-card" style="--color: var(--return)">
+    <div class="day-header">
+      <div class="day-num"><span class="dayno">10</span>Day</div>
+      <div class="day-title-block">
+        <div class="date">Tuesday, Aug 27</div>
+        <div class="title">Canmore → Calgary → Fly Home</div>
+      </div>
+      <div class="day-badges"><span class="badge">▸ Drive</span></div>
+    </div>
+    <div class="day-body">
+      <div class="base-tag">Return &nbsp;·&nbsp; Drive: 1 hr Canmore → Calgary YYC</div>
+      <ul class="schedule">
+        <li><span class="time">8:00 am</span><span class="act">Breakfast in Canmore — <em>Beamer's Coffee Bar</em> or <em>Communitea Café</em>. Last morning with the Three Sisters skyline.</span></li>
+        <li><span class="time">9:30 am</span><span class="act">Check out. Drive Trans-Canada east to Calgary (~1 hr).</span></li>
+        <li><span class="time">10:30 am</span><span class="act">Arrive <strong>Calgary YYC</strong>. Return the rental car (one-way drop-off, Vancouver pick-up). Check in for your flight home.</span></li>
+      </ul>
+      <div class="day-note">▸ The one-way rental drop-off is at Calgary YYC. Confirm the exact return location with your rental company in advance — some agencies use an off-airport lot requiring a shuttle.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- BOOKINGS -->
+<section class="bookings">
+  <h2>What to Book — and When</h2>
+  <table class="booking-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>When to Book</th>
+        <th>Where</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Whistler accommodation</strong></td>
+        <td class="urgent">Now</td>
+        <td>VRBO, Airbnb, or whistlerblackcomb.com</td>
+        <td>August is absolute peak season. Whistler Village or Creekside. Book immediately.</td>
+      </tr>
+      <tr>
+        <td><strong>Revelstoke accommodation</strong></td>
+        <td class="urgent">Now</td>
+        <td>Booking.com / Airbnb</td>
+        <td>1 night (Aug 20). Options include Regent Hotel, Coast Hillcrest, or local B&amp;Bs.</td>
+      </tr>
+      <tr>
+        <td><strong>Canmore accommodation</strong> (first stay)</td>
+        <td class="urgent">Now</td>
+        <td>Airbnb or hotels</td>
+        <td>3 nights (Aug 21–24). Downtown or Bow River area preferred.</td>
+      </tr>
+      <tr>
+        <td><strong>Jasper accommodation</strong></td>
+        <td class="urgent">Now</td>
+        <td>Direct with property</td>
+        <td>2 nights (Aug 24–26). Options: Pyramid Lake Resort, Tekarra Lodge, Pine Bungalows, Overlander Mountain Lodge.</td>
+      </tr>
+      <tr>
+        <td><strong>Canmore accommodation</strong> (return)</td>
+        <td class="urgent">Now</td>
+        <td>Airbnb or hotels</td>
+        <td>1 night (Aug 26–27). Can be anywhere in town.</td>
+      </tr>
+      <tr>
+        <td><strong>One-way rental car</strong></td>
+        <td class="urgent">Now</td>
+        <td>Enterprise, National, Hertz</td>
+        <td>Pick up Vancouver YVR, drop off Calgary YYC. Call directly for best one-way rates. Book an SUV.</td>
+      </tr>
+      <tr>
+        <td><strong>Pursuit Pass Rockies</strong></td>
+        <td class="urgent">Now</td>
+        <td><a href="https://www.banffjaspercollection.com/passes/rockies-pursuit-pass/" target="_blank">banffjaspercollection.com</a></td>
+        <td>CA$339/adult. Covers all 5: Golden Skybridge, Banff Gondola, Maligne Lake Cruise, Icefield Adventure, Icefield Skywalk.</td>
+      </tr>
+      <tr>
+        <td><strong>Whistler Gondola + Peak 2 Peak</strong></td>
+        <td class="urgent">Now</td>
+        <td><a href="https://www.whistlerblackcomb.com" target="_blank">whistlerblackcomb.com</a></td>
+        <td>Book the Day 2 morning slot. Summer sightseeing combo ~CA$85/person. Sells out in peak weeks.</td>
+      </tr>
+      <tr>
+        <td><strong>Parks Canada Discovery Pass</strong></td>
+        <td>Before trip</td>
+        <td><a href="https://reservation.pc.gc.ca" target="_blank">reservation.pc.gc.ca</a></td>
+        <td>~CA$75/adult or CA$150 family (unlimited). Covers Banff, Yoho, and Jasper park entry fees — pays for itself by Day 4.</td>
+      </tr>
+      <tr>
+        <td><strong>Golden Skybridge time slot</strong></td>
+        <td>Before trip</td>
+        <td><a href="https://goldenbc.ca/skybridge" target="_blank">goldenbc.ca/skybridge</a></td>
+        <td>Covered by Pursuit Pass. Book the 10:00 am slot for Day 4 (Aug 21).</td>
+      </tr>
+      <tr>
+        <td><strong>Moraine Lake shuttle</strong></td>
+        <td class="urgent">Aug 20 at 7:00 am PDT</td>
+        <td><a href="https://reservation.pc.gc.ca" target="_blank">reservation.pc.gc.ca</a></td>
+        <td>Rolling 2-day window — Aug 22 slots open Aug 20 at 8:00 am MDT (= 7:00 am PDT). Set alarm for 6:50 am PDT. Book 9:30 am departure from Lake Louise Park &amp; Ride.</td>
+      </tr>
+      <tr>
+        <td><strong>Maligne Lake Spirit Island Cruise</strong></td>
+        <td>Before trip</td>
+        <td><a href="https://www.malignelake.com" target="_blank">malignelake.com</a></td>
+        <td>Included in Pursuit Pass. Book a 10:00 am slot for Day 8 (Aug 25).</td>
+      </tr>
+      <tr>
+        <td><strong>Columbia Icefield Adventure time slot</strong></td>
+        <td>Before trip</td>
+        <td><a href="https://www.banffjaspercollection.com" target="_blank">banffjaspercollection.com</a></td>
+        <td>Covered by Pursuit Pass but requires a separate time slot booking. Book 1:00 pm for Day 9 (Aug 26).</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TIPS -->
+<section class="tips">
+  <h2>Good to Know</h2>
+  <div class="tip-grid">
+
+    <div class="tip-card">
+      <h3>The Flow of This Trip</h3>
+      <p>You arrive on BC's coast and the scenery builds progressively: rainforest and granite cliffs (Sea to Sky), resort mountains (Whistler), dry interior valleys (BC interior), then Columbia Mountain passes (Revelstoke, Rogers Pass), and finally the full Rocky Mountain grandeur from Banff to Jasper. It escalates. By the time you reach Moraine Lake and the Icefields Parkway, the buildup pays off.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>One-Way Rental Advice</h3>
+      <p>One-way fees from Vancouver YVR to Calgary YYC vary widely by company and how far in advance you book. Call Enterprise, National, and Hertz directly — they sometimes have better one-way rates over the phone than online. Confirm the exact drop-off location at YYC, as off-airport lots require a shuttle. Budget 30 extra minutes at the Calgary end.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>Whistler in August</h3>
+      <p>August is peak hiking and biking season but the gondola and Peak 2 Peak are the headline activities for sightseeing visitors. Afternoon cloud is common — do the summit activities in the morning. Whistler Village is pedestrian-only and extremely walkable. Parking is at the Day Lots at the base of both mountains. Your hotel may have shuttle service from the village.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>Crossing into Alberta</h3>
+      <p>You enter Alberta on Day 4 via the Trans-Canada near Field, BC (Yoho NP). The landscape changes noticeably — the peaks become more dramatic and the rock layers exposed in the thrust fault geology are extraordinary. If your Parks Canada Discovery Pass isn't purchased before the trip, you can buy it at any park gate. Keep it in the windshield for all subsequent park entry.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>Driving the Icefields Parkway</h3>
+      <p>You drive the Parkway in both directions: northbound on Day 7 (Bow Lake, Peyto Lake), southbound on Day 9 (Sunwapta Falls, Icefield Adventure, Skywalk). Both directions have different angles and lighting. Gas up in Lake Louise before going north and in Jasper before heading south — there are no gas stations on the Parkway itself.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>What to Pack</h3>
+      <p>Layers every day — mornings are cold even in August (0–8°C at altitude). Rain shell essential (Whistler gets coastal weather). Sunscreen and sunglasses (UV is intense at elevation). Good walking shoes with grip (some paths are rocky). Bathing suit for Miette Hot Springs. Binoculars help for glacier and wildlife viewing.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>Wildlife</h3>
+      <p>Bears (black and grizzly), elk, moose, bighorn sheep, and mountain goats are genuinely common across this route. Pull over safely if you see a wildlife jam on the highway — never stop in the lane. Keep food secured in your vehicle at all times, especially overnight in Jasper and Whistler. Bear spray is available at any outdoor store in Canmore or Jasper.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>Maligne Lake Cruise Tip</h3>
+      <p>The Spirit Island view is accessible only by the 90-min boat cruise — there is no trail to Spirit Island. The landscape on the water is extraordinary on calm mornings when the lake mirrors the peaks. Bring a warm layer; the lake is at 1,700m and the boat deck is exposed. If weather is uncertain on your planned day, verify cancellation policies when booking.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  Whistler + Canadian Rockies &nbsp;·&nbsp; August 18 – 27, 2026 &nbsp;·&nbsp; Vancouver YVR in &nbsp;·&nbsp; Calgary YYC out
+</footer>
+
+</body>
+</html>

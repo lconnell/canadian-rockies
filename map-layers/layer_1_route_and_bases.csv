@@ -1,0 +1,10 @@
+Name,Latitude,Longitude,Description,Priority
+Calgary International Airport,51.1215,-114.0076,"Fly in Aug 18, 2026. Pick up one-way SUV here for Calgary to Vancouver route.",Core
+Canmore / Dead Man's Flats base,51.0887,-115.3476,"Nights 1-3 (Aug 18-21). Use Canmore if Airbnb availability and pricing work; Dead Man's Flats is acceptable but less walkable and adds 10-15 minutes for meals and errands. Base for Banff Gondola, Johnston Canyon, Moraine Lake, and Lake Louise.",Core
+Dead Man's Flats,51.0417,-115.2620,"Backup/alternate Banff-area lodging if Canmore Airbnb options are poor. Plan groceries and dinners by car; do not assume walkable Canmore-style evenings.",Add
+Golden,51.2977,-116.9739,"Night 4 (Aug 21-22). Best logistics for Yoho, Emerald Lake, Natural Bridge, and Golden Skybridge before continuing to Jasper via the Icefields Parkway.",Core
+Jasper townsite,52.8737,-118.0814,"Nights 5-6 (Aug 22-24). Base for Maligne Lake Spirit Island Cruise, Pyramid Lake, Jasper town, and optional local recovery stops. Book direct early due to tight post-wildfire accommodation supply.",Core
+Kamloops,50.6745,-120.3273,"Night 7 (Aug 24-25). Practical break between Jasper and Whistler. Use for fuel, food, laundry, and rest before the scenic Lillooet/Duffey Lake drive.",Core
+Whistler,50.1163,-122.9574,"Night 8 (Aug 25-26). Base for Peak 2 Peak / Whistler alpine sightseeing, village time, Lost Lake, and Valley Trail.",Core
+Vancouver,49.2827,-123.1207,"Night 9 (Aug 26-27). Final night before YVR departure; protects the flight day from Sea-to-Sky traffic or rental-return delays.",Core
+Vancouver International Airport,49.1967,-123.1815,"Fly out Aug 27, 2026. Return one-way SUV here; allow buffer for rental return and check-in.",Core

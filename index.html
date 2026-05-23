@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canadian Rockies Itineraries</title>
+  <style>
+    :root {
+      --page-bg: #f4f5ef;
+      --surface: #ffffff;
+      --ink: #23312d;
+      --muted: #5f6b65;
+      --line: #d9e1da;
+      --spruce: #173f36;
+      --evergreen: #235e4b;
+      --lake: #0c6b78;
+      --glacier: #e8f2ef;
+      --amber: #b7792f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--page-bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(13, 48, 42, 0.96), rgba(20, 82, 66, 0.88)),
+        url("brochure-assets/bow-lake-wide-hero.jpg") center/cover;
+      color: #fff;
+      padding: 72px 24px 88px;
+    }
+
+    .hero-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      color: #d4e9e2;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.98;
+      font-weight: 400;
+    }
+
+    .subtitle {
+      max-width: 680px;
+      margin-top: 22px;
+      color: #edf6f2;
+      font-size: 18px;
+    }
+
+    main {
+      max-width: 960px;
+      margin: -42px auto 64px;
+      padding: 0 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      display: block;
+      min-height: 250px;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--evergreen);
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(20, 48, 42, 0.12);
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-2px);
+      border-top-color: var(--lake);
+      box-shadow: 0 18px 38px rgba(20, 48, 42, 0.16);
+      outline: none;
+    }
+
+    .card-label {
+      color: var(--lake);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--spruce);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .card p {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      background: var(--glacier);
+      color: var(--spruce);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .downloads {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--amber);
+      background: #fbf1df;
+      color: #4f3f2c;
+      font-size: 14px;
+    }
+
+    .downloads a {
+      color: var(--lake);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(12, 107, 120, 0.28);
+    }
+
+    @media (max-width: 720px) {
+      .hero { padding: 56px 20px 74px; }
+      main { margin-top: -34px; padding: 0 18px; }
+      .grid { grid-template-columns: 1fr; }
+      .card { min-height: auto; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">August 2026 road trip planning</div>
+      <h1>Canadian Rockies Itineraries</h1>
+      <div class="subtitle">Static trip guides for the Rockies, Whistler, Vancouver, and Calgary routes.</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <a class="card" href="Canadian_Rockies_Calgary_to_Vancouver_Itinerary_Aug2026.html">
+        <div class="card-label">Calgary to Vancouver</div>
+        <h2>Road Trip Itinerary</h2>
+        <p>Ten-day one-way route through Banff, Yoho, Jasper, Kamloops, Whistler, and Vancouver.</p>
+        <div class="meta">
+          <span class="chip">10 days</span>
+          <span class="chip">YYC to YVR</span>
+          <span class="chip">Pursuit Pass</span>
+        </div>
+      </a>
+
+      <a class="card" href="Canadian_Rockies_Whistler_Aug2026.html">
+        <div class="card-label">Whistler + Rockies</div>
+        <h2>Alternate Route</h2>
+        <p>Whistler-first route with Sea to Sky, Revelstoke, Canmore, Jasper, and Calgary departure.</p>
+        <div class="meta">
+          <span class="chip">10 days</span>
+          <span class="chip">YVR to YYC</span>
+          <span class="chip">Airbnbs + SUV</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="downloads">
+      PDF copies are included for reference:
+      <a href="Canadian_Rockies_Calgary_to_Vancouver_Itinerary_Aug2026.pdf">Calgary to Vancouver</a>
+      and
+      <a href="Canadian_Rockies_Whistler_Aug2026.pdf">Whistler + Rockies</a>.
+    </div>
+  </main>
+</body>
+</html>
