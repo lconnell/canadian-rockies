@@ -1,210 +1,1267 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canadian Rockies Itineraries</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Canadian Rockies Road Trip — Aug 18–27, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
+    /* ── Tokens ────────────────────────────────────────────────── */
     :root {
-      --page-bg: #f4f5ef;
-      --surface: #ffffff;
-      --ink: #23312d;
-      --muted: #5f6b65;
-      --line: #d9e1da;
-      --spruce: #173f36;
-      --evergreen: #235e4b;
-      --lake: #0c6b78;
-      --glacier: #e8f2ef;
-      --amber: #b7792f;
+      --bg:      oklch(96% 0.012 145);
+      --surface: oklch(100% 0 0);
+      --fg:      oklch(21% 0.045 155);
+      --muted:   oklch(47% 0.018 160);
+      --border:  oklch(86% 0.012 145);
+      --accent:  oklch(48% 0.095 185);
+      --green:   oklch(38% 0.095 155);
+      --orange:  oklch(57% 0.12 60);
+      --navy:    oklch(22% 0.07 165);
+
+      --f-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --f-body:    'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --f-mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
     }
 
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
 
     body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--page-bg);
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--f-body);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Top nav ───────────────────────────────────────────────── */
+    .top-nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      height: 48px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      gap: 0;
+    }
+    .top-nav::-webkit-scrollbar { display: none; }
+    .top-nav .nav-brand {
+      font-family: var(--f-display);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+    .top-nav a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      padding: 0 11px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .top-nav a:hover,
+    .top-nav a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── Page sections ─────────────────────────────────────────── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 72px 52px 60px;
+    }
+    .page + .page {
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Cover ─────────────────────────────────────────────────── */
+    #cover {
+      max-width: 100%;
+      padding: 0;
+      background: var(--navy);
+      color: #fff;
+    }
+    .cover-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 52px 0;
+    }
+    .cover-eyebrow {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 22px;
+    }
+    .cover-title {
+      font-family: var(--f-display);
+      font-size: clamp(38px, 5.5vw, 70px);
+      font-weight: 700;
+      line-height: 1.04;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .cover-title .arrow { color: var(--accent); }
+    .cover-subtitle {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 52px;
+      letter-spacing: 0.02em;
+    }
+    .cover-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 60px;
+    }
+    .stat-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+    }
+    .stat-chip .s-icon { font-size: 18px; line-height: 1; }
+    .stat-chip .s-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.88);
+    }
+    .bases-label {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .bases-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .base-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-top: 3px solid var(--accent);
+      padding: 20px 18px 22px;
+    }
+    .base-num {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
+    }
+    .base-name {
+      font-family: var(--f-display);
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .base-dates {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 10px;
+    }
+    .base-nights {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      font-family: var(--f-mono);
+      font-size: 10px;
+      padding: 3px 9px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 12px;
+    }
+    .base-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.5;
+    }
+    .cover-mountains {
+      display: block;
+      margin-top: 56px;
+      width: 100%;
+    }
+
+    /* ── Section scaffolding ───────────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      margin-bottom: 36px;
+    }
+    .day-badge {
+      flex-shrink: 0;
+      width: 58px;
+      height: 58px;
+      background: var(--orange);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .day-badge .db-label {
+      font-family: var(--f-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 2px;
+    }
+    .day-badge .db-num {
+      font-family: var(--f-display);
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .day-badge.multi {
+      border-radius: 6px;
+      height: 52px;
+    }
+    .day-badge.multi .db-num { font-size: 19px; }
+
+    .sh-meta {}
+    .sh-date {
+      font-family: var(--f-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .sh-title {
+      font-family: var(--f-display);
+      font-size: 31px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--navy);
+    }
+    .drive-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 5px 13px;
+      background: oklch(92% 0.006 90);
+      font-family: var(--f-mono);
+      font-size: 11.5px;
+      color: var(--muted);
+      border-radius: 99px;
+    }
+
+    .gold-rule {
+      width: 48px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 34px;
+    }
+
+    /* ── Activity list ─────────────────────────────────────────── */
+    .activities { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .act {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      align-items: start;
+    }
+    .act-dot {
+      margin-top: 6px;
+      width: 9px;
+      height: 9px;
+      background: var(--green);
+      border-radius: 50%;
+      justify-self: center;
+    }
+    .act-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--fg);
+      margin-bottom: 3px;
+    }
+    .act-tag {
+      display: inline-block;
+      font-family: var(--f-mono);
+      font-size: 10.5px;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1px 7px;
+      border-radius: 3px;
+      margin-left: 7px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .act-body {
+      font-size: 13.5px;
+      color: var(--muted);
       line-height: 1.55;
     }
 
-    .hero {
-      background:
-        linear-gradient(135deg, rgba(13, 48, 42, 0.96), rgba(20, 82, 66, 0.88)),
-        url("brochure-assets/bow-lake-wide-hero.jpg") center/cover;
-      color: #fff;
-      padding: 72px 24px 88px;
+    /* ── Callout boxes ─────────────────────────────────────────── */
+    .callout {
+      margin-top: 28px;
+      padding: 15px 20px;
+      font-size: 13.5px;
+      line-height: 1.55;
     }
-
-    .hero-inner {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      color: #d4e9e2;
+    .callout strong {
+      display: block;
+      font-weight: 600;
       font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .callout.warn {
+      background: oklch(98% 0.018 75);
+      border-left: 3px solid var(--accent);
+    }
+    .callout.warn strong { color: oklch(52% 0.14 75); }
+    .callout.tip {
+      background: oklch(97% 0.012 155);
+      border-left: 3px solid var(--green);
+    }
+    .callout.tip strong { color: var(--green); }
+
+    /* ── Two-column layout ─────────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px;
+    }
+    .col-label {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
       margin-bottom: 18px;
     }
 
-    h1 {
-      max-width: 760px;
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 0.98;
-      font-weight: 400;
-    }
-
-    .subtitle {
-      max-width: 680px;
-      margin-top: 22px;
-      color: #edf6f2;
-      font-size: 18px;
-    }
-
-    main {
-      max-width: 960px;
-      margin: -42px auto 64px;
-      padding: 0 24px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      display: block;
-      min-height: 250px;
-      padding: 28px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-top: 5px solid var(--evergreen);
-      border-radius: 8px;
-      box-shadow: 0 12px 30px rgba(20, 48, 42, 0.12);
-      color: inherit;
-      text-decoration: none;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
-    }
-
-    .card:hover,
-    .card:focus-visible {
-      transform: translateY(-2px);
-      border-top-color: var(--lake);
-      box-shadow: 0 18px 38px rgba(20, 48, 42, 0.16);
-      outline: none;
-    }
-
-    .card-label {
-      color: var(--lake);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+    /* ── Page-level title block (non-cover) ────────────────────── */
+    .pg-eyebrow {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      color: var(--accent);
+      margin-bottom: 10px;
     }
-
-    h2 {
-      margin: 0;
-      color: var(--spruce);
-      font-family: Georgia, "Times New Roman", serif;
+    .pg-title {
+      font-family: var(--f-display);
       font-size: 30px;
-      line-height: 1.1;
       font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
     }
 
-    .card p {
-      margin: 16px 0 0;
+    /* ── Route map ─────────────────────────────────────────────── */
+    .map-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 28px 24px 20px;
+      margin-bottom: 36px;
+    }
+
+    /* ── Driving table ─────────────────────────────────────────── */
+    .drive-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    .drive-table th {
+      text-align: left;
+      font-family: var(--f-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: var(--muted);
+      padding: 0 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .drive-table td {
+      padding: 11px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .drive-table tr:last-child td {
+      border-bottom: none;
+      font-weight: 600;
+      background: oklch(95% 0.006 85);
+    }
+    .mn { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+    /* ── Highlights grid ───────────────────────────────────────── */
+    .hl-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .hl-card {
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--green);
+      padding: 18px;
+      background: var(--surface);
+    }
+    .hl-name {
+      font-family: var(--f-display);
       font-size: 15px;
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 24px;
-    }
-
-    .chip {
-      padding: 6px 10px;
-      background: var(--glacier);
-      color: var(--spruce);
-      border-radius: 999px;
-      font-size: 12px;
       font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .hl-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
     }
 
-    .downloads {
-      margin-top: 24px;
+    /* ── Tips grid ─────────────────────────────────────────────── */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .tip-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
       padding: 18px 20px;
-      border-left: 4px solid var(--amber);
-      background: #fbf1df;
-      color: #4f3f2c;
-      font-size: 14px;
+    }
+    .tip-card-title {
+      font-weight: 600;
+      font-size: 11.5px;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .tip-card p {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.55;
     }
 
-    .downloads a {
-      color: var(--lake);
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(12, 107, 120, 0.28);
+    /* ── Print ─────────────────────────────────────────────────── */
+    @media print {
+      @page { size: letter portrait; margin: 1.4cm 1.8cm; }
+
+      html { font-size: 12px; }
+      body { background: #fff; }
+
+      .top-nav { display: none !important; }
+
+      .page {
+        padding: 0 0 24px;
+        max-width: 100%;
+        page-break-before: always;
+        break-before: page;
+      }
+      #cover {
+        max-width: 100%;
+        page-break-before: auto;
+        break-before: auto;
+        background: var(--navy) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .cover-inner { padding: 28px 0 0; }
+      .bases-grid { grid-template-columns: repeat(4, 1fr); }
+      .hl-grid { grid-template-columns: repeat(3, 1fr); }
+      .tips-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-col { grid-template-columns: 1fr 1fr; }
+
+      .base-card, .hl-card, .tip-card {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .callout.warn, .callout.tip {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .drive-table tr:last-child td {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
     }
 
-    @media (max-width: 720px) {
-      .hero { padding: 56px 20px 74px; }
-      main { margin-top: -34px; padding: 0 18px; }
-      .grid { grid-template-columns: 1fr; }
-      .card { min-height: auto; padding: 24px; }
+    /* ── Mobile ────────────────────────────────────────────────── */
+    @media (max-width: 660px) {
+      .page { padding: 64px 22px 48px; }
+      .bases-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-col { grid-template-columns: 1fr; gap: 32px; }
+      .hl-grid { grid-template-columns: repeat(2, 1fr); }
+      .tips-grid { grid-template-columns: 1fr; }
+      .cover-stats { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">August 2026 road trip planning</div>
-      <h1>Canadian Rockies Itineraries</h1>
-      <div class="subtitle">Static trip guides for the Rockies, Whistler, Vancouver, and Calgary routes.</div>
-    </div>
-  </header>
 
-  <main>
-    <div class="grid">
-      <a class="card" href="Canadian_Rockies_Calgary_to_Vancouver_Itinerary_Aug2026.html">
-        <div class="card-label">Calgary to Vancouver</div>
-        <h2>Road Trip Itinerary</h2>
-        <p>Ten-day one-way route through Banff, Yoho, Jasper, Kamloops, Whistler, and Vancouver.</p>
-        <div class="meta">
-          <span class="chip">10 days</span>
-          <span class="chip">YYC to YVR</span>
-          <span class="chip">Pursuit Pass</span>
+  <!-- TOP NAV -->
+  <nav class="top-nav" aria-label="Itinerary navigation">
+    <span class="nav-brand">Canadian Rockies</span>
+    <a href="#cover">Overview</a>
+    <a href="#route">Route Map</a>
+    <a href="#day1">Day 1</a>
+    <a href="#day2">Day 2</a>
+    <a href="#day3">Day 3</a>
+    <a href="#day4">Day 4</a>
+    <a href="#day5">Day 5</a>
+    <a href="#day6">Day 6</a>
+    <a href="#day7">Days 7–9</a>
+    <a href="#day10">Day 10</a>
+    <a href="#tips">Tips</a>
+  </nav>
+
+  <!-- ── COVER ───────────────────────────────────────────────────── -->
+  <section id="cover" class="page">
+    <div class="cover-inner">
+      <p class="cover-eyebrow">Aug 18 – 27, 2026 &nbsp;·&nbsp; Alberta &amp; British Columbia, Canada</p>
+      <h1 class="cover-title">
+        Canadian Rockies<br>
+        <span class="arrow">→</span> British Columbia
+      </h1>
+      <p class="cover-subtitle">A Road Trip Itinerary — Calgary to Vancouver</p>
+
+      <div class="cover-stats">
+        <div class="stat-chip">
+          <span class="s-icon">📅</span><span class="s-label">10 Days</span>
         </div>
-      </a>
-
-      <a class="card" href="Canadian_Rockies_Whistler_Aug2026.html">
-        <div class="card-label">Whistler + Rockies</div>
-        <h2>Alternate Route</h2>
-        <p>Whistler-first route with Sea to Sky, Revelstoke, Canmore, Jasper, and Calgary departure.</p>
-        <div class="meta">
-          <span class="chip">10 days</span>
-          <span class="chip">YVR to YYC</span>
-          <span class="chip">Airbnbs + SUV</span>
+        <div class="stat-chip">
+          <span class="s-icon">🚙</span><span class="s-label">SUV Rental · One-way YYC → YVR</span>
         </div>
-      </a>
+        <div class="stat-chip">
+          <span class="s-icon">👥</span><span class="s-label">5–6 People</span>
+        </div>
+        <div class="stat-chip">
+          <span class="s-icon">🏠</span><span class="s-label">Airbnb / Hotels</span>
+        </div>
+        <div class="stat-chip">
+          <span class="s-icon">🎫</span><span class="s-label">Pursuit Pass Included</span>
+        </div>
+      </div>
+
+      <p class="bases-label">4 Base Camps</p>
+      <div class="bases-grid">
+        <div class="base-card">
+          <p class="base-num">BASE 01</p>
+          <p class="base-name">Canmore, AB</p>
+          <p class="base-dates">Aug 18 – 21</p>
+          <span class="base-nights">3 Nights</span>
+          <p class="base-desc">Gateway to Banff · Moraine Lake · Lake Louise · Johnston Canyon</p>
+        </div>
+        <div class="base-card">
+          <p class="base-num">BASE 02</p>
+          <p class="base-name">Jasper, AB</p>
+          <p class="base-dates">Aug 21 – 23</p>
+          <span class="base-nights">2 Nights</span>
+          <p class="base-desc">Maligne Lake · Pyramid Lake · Jasper town · Dark Sky Preserve</p>
+        </div>
+        <div class="base-card">
+          <p class="base-num">BASE 03</p>
+          <p class="base-name">Revelstoke, BC</p>
+          <p class="base-dates">Aug 23 – 24</p>
+          <span class="base-nights">1 Night</span>
+          <p class="base-desc">Rogers Pass · Glacier NP · Entry into British Columbia</p>
+        </div>
+        <div class="base-card">
+          <p class="base-num">BASE 04</p>
+          <p class="base-name">Whistler &amp; Vancouver</p>
+          <p class="base-dates">Aug 24 – 27</p>
+          <span class="base-nights">3 Nights</span>
+          <p class="base-desc">Peak 2 Peak · Garibaldi · Sea to Sky Hwy · Fly out YVR</p>
+        </div>
+      </div>
     </div>
 
-    <div class="downloads">
-      PDF copies are included for reference:
-      <a href="Canadian_Rockies_Calgary_to_Vancouver_Itinerary_Aug2026.pdf">Calgary to Vancouver</a>
-      and
-      <a href="Canadian_Rockies_Whistler_Aug2026.pdf">Whistler + Rockies</a>.
+    <!-- Mountain silhouette decoration -->
+    <svg class="cover-mountains" viewBox="0 0 1200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMax slice">
+      <polygon points="0,140 100,55 175,105 250,35 340,90 410,20 490,75 560,10 640,65 710,30 790,80 860,40 940,85 1010,25 1080,70 1150,45 1200,80 1200,140" fill="rgba(255,255,255,0.07)"/>
+      <polygon points="0,140 60,90 140,120 220,75 310,115 390,65 470,100 540,50 610,90 680,60 760,95 840,70 920,105 990,60 1060,90 1130,65 1200,95 1200,140" fill="rgba(255,255,255,0.11)"/>
+    </svg>
+  </section>
+
+  <!-- ── ROUTE OVERVIEW ───────────────────────────────────────────── -->
+  <section id="route" class="page">
+    <p class="pg-eyebrow">The Route</p>
+    <h2 class="pg-title">Calgary → Vancouver · ~1,640 km</h2>
+    <div class="gold-rule"></div>
+
+    <div class="map-wrap">
+      <svg viewBox="0 0 800 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;" role="img" aria-label="Route map from Calgary to Vancouver through the Canadian Rockies">
+        <!-- Background -->
+        <rect width="800" height="290" fill="#F7F5F0"/>
+
+        <!-- Mountain silhouettes -->
+        <polygon points="0,230 60,140 110,190 175,110 240,170 295,80 360,150 410,100 460,155 520,115 570,160 630,125 680,168 740,135 800,165 800,230" fill="oklch(42% 0.10 155 / 0.10)"/>
+        <polygon points="0,230 40,180 90,210 150,160 210,200 270,145 330,190 390,165 440,195 500,170 550,200 610,178 660,205 710,182 770,205 800,195 800,230" fill="oklch(42% 0.10 155 / 0.16)"/>
+
+        <!-- Province border -->
+        <line x1="462" y1="18" x2="462" y2="272" stroke="rgba(0,0,0,0.08)" stroke-width="1" stroke-dasharray="5,4"/>
+        <text x="385" y="30" font-family="monospace" font-size="9" fill="rgba(0,0,0,0.28)" letter-spacing="2">ALBERTA</text>
+        <text x="480" y="30" font-family="monospace" font-size="9" fill="rgba(0,0,0,0.28)" letter-spacing="2">BRITISH COLUMBIA</text>
+
+        <!-- Route path -->
+        <path d="M 65,210
+                 C 90,210 115,185 140,170
+                 C 160,157 175,140 192,125
+                 C 210,110 222,105 238,108
+                 C 255,112 268,130 282,140
+                 C 300,152 320,158 352,158
+                 C 375,158 400,155 430,148
+                 C 450,143 462,138 498,165
+                 C 528,188 560,205 600,222
+                 C 633,235 660,242 700,244
+                 C 726,245 748,241 766,237"
+              stroke="oklch(65% 0.14 75)" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <!-- Arrowhead at Vancouver -->
+        <polygon points="766,230 782,237 766,244" fill="oklch(65% 0.14 75)"/>
+
+        <!-- STOPS -->
+        <!-- Calgary -->
+        <circle cx="65" cy="210" r="9" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
+        <text x="65" y="185" font-family="sans-serif" font-weight="700" font-size="11.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Calgary</text>
+        <text x="65" y="198" font-family="monospace" font-size="9" fill="oklch(50% 0.015 240)" text-anchor="middle">YYC · Start</text>
+
+        <!-- Canmore/Banff -->
+        <circle cx="145" cy="166" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
+        <text x="145" y="142" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Canmore</text>
+        <text x="145" y="154" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 1 · Banff</text>
+
+        <!-- Lake Louise / Moraine -->
+        <circle cx="215" cy="116" r="6" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="2"/>
+        <text x="215" y="95" font-family="sans-serif" font-weight="600" font-size="10.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Lake Louise</text>
+        <text x="215" y="107" font-family="monospace" font-size="8" fill="oklch(50% 0.015 240)" text-anchor="middle">+ Moraine Lake</text>
+
+        <!-- Columbia Icefield -->
+        <circle cx="275" cy="138" r="5.5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="2"/>
+        <text x="275" y="118" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)" text-anchor="middle">Columbia</text>
+        <text x="275" y="129" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)" text-anchor="middle">Icefield</text>
+
+        <!-- Jasper -->
+        <circle cx="355" cy="158" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
+        <text x="355" y="136" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Jasper</text>
+        <text x="355" y="148" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 2</text>
+
+        <!-- Mt Robson -->
+        <circle cx="430" cy="148" r="5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="1.5"/>
+        <text x="430" y="130" font-family="sans-serif" font-weight="500" font-size="9.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Mt. Robson</text>
+
+        <!-- Rogers Pass -->
+        <circle cx="498" cy="165" r="5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="1.5"/>
+        <text x="498" y="185" font-family="sans-serif" font-weight="500" font-size="9.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Rogers Pass</text>
+
+        <!-- Revelstoke -->
+        <circle cx="600" cy="222" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
+        <text x="600" y="248" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Revelstoke</text>
+        <text x="600" y="260" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 3</text>
+
+        <!-- Whistler -->
+        <circle cx="700" cy="244" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
+        <text x="700" y="222" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Whistler</text>
+        <text x="700" y="234" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 4</text>
+
+        <!-- Vancouver -->
+        <circle cx="770" cy="237" r="9" fill="oklch(20% 0.04 255)" stroke="#F7F5F0" stroke-width="2.5"/>
+        <text x="770" y="214" font-family="sans-serif" font-weight="700" font-size="11.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Vancouver</text>
+        <text x="770" y="226" font-family="monospace" font-size="9" fill="oklch(50% 0.015 240)" text-anchor="middle">YVR · End</text>
+
+        <!-- Distance markers on route -->
+        <text x="104" y="207" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">100 km</text>
+        <text x="290" y="96" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">300 km</text>
+        <text x="400" y="122" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">640 km</text>
+        <text x="648" y="225" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">475 km</text>
+        <text x="736" y="225" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">125 km</text>
+
+        <!-- Legend -->
+        <circle cx="26" cy="272" r="6" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="1.5"/>
+        <text x="38" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Overnight base</text>
+        <circle cx="128" cy="272" r="4.5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="1.5"/>
+        <text x="139" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Day stop</text>
+        <line x1="225" y1="272" x2="255" y2="272" stroke="oklch(65% 0.14 75)" stroke-width="3"/>
+        <text x="263" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Route</text>
+      </svg>
     </div>
-  </main>
+
+    <p class="pg-eyebrow" style="margin-bottom:14px;">Driving at a Glance</p>
+    <table class="drive-table">
+      <thead>
+        <tr>
+          <th>Leg</th>
+          <th>Km</th>
+          <th>Est. Time</th>
+          <th>Highway</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Calgary YYC → Canmore</td>
+          <td class="mn">100 km</td>
+          <td class="mn">~1 hr</td>
+          <td>Trans-Canada Hwy 1 West</td>
+        </tr>
+        <tr>
+          <td>Canmore → Jasper (via Icefields Pkwy)</td>
+          <td class="mn">300 km</td>
+          <td class="mn">3.5 hr + stops</td>
+          <td>Hwy 1 W → Hwy 93 North</td>
+        </tr>
+        <tr>
+          <td>Jasper → Revelstoke</td>
+          <td class="mn">640 km</td>
+          <td class="mn">~6 hr</td>
+          <td>Hwy 16 W → Hwy 5 S → Hwy 1 E</td>
+        </tr>
+        <tr>
+          <td>Revelstoke → Whistler</td>
+          <td class="mn">475 km</td>
+          <td class="mn">~5 hr</td>
+          <td>Hwy 1 W → Cache Creek → Hwy 99 S</td>
+        </tr>
+        <tr>
+          <td>Whistler → Vancouver YVR</td>
+          <td class="mn">125 km</td>
+          <td class="mn">~2 hr</td>
+          <td>Sea to Sky Hwy 99 South</td>
+        </tr>
+        <tr>
+          <td>Total driving distance</td>
+          <td class="mn">~1,640 km</td>
+          <td class="mn">~17+ hr</td>
+          <td style="color:var(--muted);font-size:12px;">Excludes day-trip mileage</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── DAY 1 ────────────────────────────────────────────────────── -->
+  <section id="day1" class="page">
+    <div class="section-header">
+      <div class="day-badge"><span class="db-label">Day</span><span class="db-num">1</span></div>
+      <div class="sh-meta">
+        <p class="sh-date">Sunday, August 18, 2026</p>
+        <h2 class="sh-title">Calgary Arrival → Canmore</h2>
+        <span class="drive-chip">1 hr · 100 km · Trans-Canada Hwy 1 West</span>
+      </div>
+    </div>
+    <div class="gold-rule"></div>
+    <ul class="activities">
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Fly into Calgary YYC <span class="act-tag">Morning</span></p>
+          <p class="act-body">Collect luggage and pick up the SUV rental at YYC. Confirm your Pursuit Pass package and the one-way drop arrangement at YVR before leaving the counter.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Grocery stop in Calgary <span class="act-tag">~30 min</span></p>
+          <p class="act-body">Superstore or Walmart just off Hwy 1. Stock up on snacks, drinks, and breakfast items for the full trip — grocery options thin out once you're in the parks.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Drive Trans-Canada to Canmore <span class="act-tag">~1 hr</span></p>
+          <p class="act-body">Take Hwy 1 West through Cochrane. Watch for the moment the Rockies appear on the horizon — Three Sisters, Ha Ling Peak, and Mt. Rundle come into view near the park gate.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Check into Airbnb + review bookings <span class="act-tag">Afternoon</span></p>
+          <p class="act-body">Unpack and settle in. Confirm Moraine Lake shuttle, Spirit Island boat tour, gondola time slots, and all four Airbnb check-in codes before the trip kicks into gear.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Main Street Canmore walk + dinner <span class="act-tag">Evening</span></p>
+          <p class="act-body">Walk downtown Canmore — mountain views in every direction. Try Crazyweed Kitchen (modern cuisine) or The Grizzly Paw Brewing for a relaxed first evening.</p>
+        </div>
+      </li>
+    </ul>
+    <div class="callout warn">
+      <strong>Book Before You Go</strong>
+      Moraine Lake shuttles fill weeks out — confirm your Parks Canada reservation now. Spirit Island boat tours (Day 5) require advance booking through SunDog Tours. Both sell out in August.
+    </div>
+  </section>
+
+  <!-- ── DAY 2 ────────────────────────────────────────────────────── -->
+  <section id="day2" class="page">
+    <div class="section-header">
+      <div class="day-badge"><span class="db-label">Day</span><span class="db-num">2</span></div>
+      <div class="sh-meta">
+        <p class="sh-date">Monday, August 19, 2026</p>
+        <h2 class="sh-title">Banff National Park</h2>
+        <span class="drive-chip">Day trip from Canmore · 20 min · 25 km each way</span>
+      </div>
+    </div>
+    <div class="gold-rule"></div>
+    <ul class="activities">
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Banff Gondola — Sulphur Mountain <span class="act-tag">Morning · Pursuit Pass</span></p>
+          <p class="act-body">Ride to 2,281m summit. 360° views of six mountain ranges from the summit boardwalk. Walk to Sanson Peak weather observatory (15 min). Allow 2–2.5 hrs total including the ride.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Banff Avenue + Bow Falls <span class="act-tag">Midday</span></p>
+          <p class="act-body">Stroll the main strip for lunch — Park Distillery and Eddie Burger + Bar are both good. Short path leads to Bow Falls viewpoint from Bow Avenue bridge.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Lake Minnewanka <span class="act-tag">Afternoon · 20 min from Banff</span></p>
+          <p class="act-body">Largest lake in Banff National Park. Scenic drive along the shoreline. Optional: 1.5-hour boat cruise. The free lakeside viewpoint and picnic area is worth the detour alone.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Johnston Canyon <span class="act-tag">Late afternoon · 30 min from Canmore</span></p>
+          <p class="act-body">Catwalk trail through a dramatic limestone canyon. Lower Falls: 1.1 km easy (30 min). Upper Falls add 2.7 km more (45 min extra). Go at least to the Upper Falls — they're worth it. Return before dark.</p>
+        </div>
+      </li>
+    </ul>
+    <div class="callout tip">
+      <strong>Parks Canada Discovery Pass</strong>
+      Required for Banff NP entry. Buy online at parks.canada.ca or at the park gate. The group day pass (~$10.50/person) is fine; the annual Discovery Pass (~$75/adult) pays off if you plan to visit more parks this year. It also covers Jasper and Glacier NP later in this trip.
+    </div>
+  </section>
+
+  <!-- ── DAY 3 ────────────────────────────────────────────────────── -->
+  <section id="day3" class="page">
+    <div class="section-header">
+      <div class="day-badge"><span class="db-label">Day</span><span class="db-num">3</span></div>
+      <div class="sh-meta">
+        <p class="sh-date">Tuesday, August 20, 2026</p>
+        <h2 class="sh-title">Moraine Lake + Lake Louise</h2>
+        <span class="drive-chip">90 km from Canmore · ~1.5 hr</span>
+      </div>
+    </div>
+    <div class="gold-rule"></div>
+    <ul class="activities">
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Moraine Lake — Valley of Ten Peaks <span class="act-tag">5:00–5:30 AM departure</span></p>
+          <p class="act-body">The glacier-carved valley backed by ten peaks above 3,000m. Climb the Rock Pile (easy, 20 min) for the classic viewpoint. Canoe rentals available from the dock. Take the Parks Canada shuttle from the Lake Louise Park &amp; Ride.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Lake Louise <span class="act-tag">Midday · 15 min from Moraine</span></p>
+          <p class="act-body">Walk the lakefront promenade to the far end for Victoria Glacier views. The Lake Agnes Tea House hike (7.4 km roundtrip, 600m gain, 3–4 hrs) is one of the finest moderate hikes in the Rockies — reward is tea, scones, and views at 2,135m.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Return to Canmore, pack for tomorrow <span class="act-tag">Afternoon</span></p>
+          <p class="act-body">Day 4 is a drive day with an early checkout. Pack tonight. Dinner at home base.</p>
+        </div>
+      </li>
+    </ul>
+    <div class="callout warn">
+      <strong>Moraine Lake — The Most Important Logistics of the Trip</strong>
+      You'll be taking the Parks Canada shuttle from the Lake Louise Park &amp; Ride — the right call. <strong>Shuttle passes drop on the Parks Canada site 2 days before your visit at 8:00 AM MT — set an alarm, have the page open ahead of time, and book within the first few minutes.</strong> Slots vanish in seconds on August dates.
+    </div>
+  </section>
+
+  <!-- ── DAY 4 ────────────────────────────────────────────────────── -->
+  <section id="day4" class="page">
+    <div class="section-header">
+      <div class="day-badge"><span class="db-label">Day</span><span class="db-num">4</span></div>
+      <div class="sh-meta">
+        <p class="sh-date">Wednesday, August 21, 2026</p>
+        <h2 class="sh-title">Icefields Parkway → Jasper</h2>
+        <span class="drive-chip">300 km · ~3.5 hr driving + stops · Check out Canmore</span>
+      </div>
+    </div>
+    <div class="gold-rule"></div>
+    <ul class="activities">
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Bow Lake <span class="act-tag">1 hr 15 min from Canmore</span></p>
+          <p class="act-body">First major stop on the Parkway. Glacier-fed water that's impossible to photograph badly. Easy lakeside trail (30 min). Bow Glacier visible at the far end.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Peyto Lake — Bow Summit Lookout <span class="act-tag">20 min from Bow Lake</span></p>
+          <p class="act-body">Park at Bow Summit (2,069m — highest paved point on the Pkwy). Walk 20 min to the famous wolf-head viewpoint over the electric-blue lake. Arrive before 10 AM for best colour and fewest people.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Columbia Icefield + Glacier Skywalk <span class="act-tag">Midday · Pursuit Pass</span></p>
+          <p class="act-body">Walk onto 10,000-year-old Athabasca Glacier with a Parks Canada guide. Then cross the Glacier Skywalk — a glass-bottomed cliff walkway suspended 280m above Sunwapta Valley. Allow 2.5–3 hrs combined.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Athabasca Falls <span class="act-tag">30 min south of Jasper</span></p>
+          <p class="act-body">The Athabasca River forces through a narrow quartzite gorge, falling 23m with enormous force. Short paved loop takes 10 minutes. Thunderous even in late summer.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Arrive Jasper, check in <span class="act-tag">Late afternoon</span></p>
+          <p class="act-body">Jasper is a small, walkable mountain town. Walk Connaught Drive. Elk frequently graze in town at dusk. Dinner at Marmot Bistro or Evil Dave's Grill.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── DAY 5 ────────────────────────────────────────────────────── -->
+  <section id="day5" class="page">
+    <div class="section-header">
+      <div class="day-badge"><span class="db-label">Day</span><span class="db-num">5</span></div>
+      <div class="sh-meta">
+        <p class="sh-date">Thursday, August 22, 2026</p>
+        <h2 class="sh-title">Jasper Area Exploration</h2>
+        <span class="drive-chip">Basecamp Jasper · Day trips up to 45 min</span>
+      </div>
+    </div>
+    <div class="gold-rule"></div>
+    <ul class="activities">
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Maligne Lake — Spirit Island Cruise <span class="act-tag">Morning · 45 min from Jasper · Book in advance</span></p>
+          <p class="act-body">Drive past Medicine Lake (a "sinking" lake with no visible outlet — it drains underground). At Maligne Lake, board the 90-minute Spirit Island boat cruise — one of Canada's most iconic views. Kayak rentals available at the boathouse if cruise is sold out.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Maligne Canyon <span class="act-tag">Midday · 15 min from Jasper</span></p>
+          <p class="act-body">Six bridges cross a 55m limestone gorge carved by the Maligne River. The teahouse sits at trailhead. Full canyon loop: 7.5 km, 2–2.5 hrs. Short version to bridge 2: 45 min, very dramatic.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Pyramid Lake <span class="act-tag">Afternoon · 8 km from Jasper</span></p>
+          <p class="act-body">Mountain-ringed lake with an island connected by a footbridge. Paddle rentals, easy shoreline trail, excellent views of Pyramid Mountain. Low-key and beautiful.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Jasper town + stargazing <span class="act-tag">Evening</span></p>
+          <p class="act-body">Jasper is a designated Dark Sky Preserve — among the largest in the world. If skies are clear, drive a few kilometres out of town and look up. Pack up tonight for tomorrow's long drive to Revelstoke.</p>
+        </div>
+      </li>
+    </ul>
+    <div class="callout tip">
+      <strong>Wildlife in Jasper</strong>
+      Elk walk through the townsite, especially at dusk. Bears are common on all side roads. Carry bear spray on every trail. Maintain 30m from elk and 100m from bears and other predators — the Parks Canada rule, and a good one.
+    </div>
+  </section>
+
+  <!-- ── DAY 6 ────────────────────────────────────────────────────── -->
+  <section id="day6" class="page">
+    <div class="section-header">
+      <div class="day-badge"><span class="db-label">Day</span><span class="db-num">6</span></div>
+      <div class="sh-meta">
+        <p class="sh-date">Friday, August 23, 2026</p>
+        <h2 class="sh-title">Jasper → Revelstoke</h2>
+        <span class="drive-chip">640 km · ~6 hr driving · Check out Jasper · Cross into BC</span>
+      </div>
+    </div>
+    <div class="gold-rule"></div>
+    <ul class="activities">
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Early checkout, head west on Hwy 16 <span class="act-tag">7:30–8:00 AM departure</span></p>
+          <p class="act-body">Yellowhead Highway through the Miette Valley. The drive west from Jasper is dramatic — wide valley, mountain walls on both sides, frequent wildlife sightings (mountain goats, moose).</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Mt. Robson Provincial Park <span class="act-tag">~1 hr from Jasper</span></p>
+          <p class="act-body">At 3,954m, Mt. Robson is the highest peak in the Canadian Rockies. Stop at the visitor centre for the view — the summit is cloud-capped more than two-thirds of days. On a clear morning, it stops you cold.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Hwy 5 South through the Thompson Plateau <span class="act-tag">Midday drive · fuel in Kamloops</span></p>
+          <p class="act-body">From Valemount, Hwy 5 drops south through interior BC — dry grassland and pine forest replace the alpine. Kamloops is the natural lunch and fuel stop (halfway point). Don't skip — petrol is sparse east of the city toward Revelstoke.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Rogers Pass — Glacier National Park <span class="act-tag">Late afternoon</span></p>
+          <p class="act-body">The Trans-Canada's most dramatic mountain pass through the Selkirks. Rogers Pass Discovery Centre (National Historic Site) is worth 20 minutes. Concrete avalanche sheds line the highway — the world's largest mobile avalanche control program. Stunning Illecillewaet Glacier visible from the road.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Arrive Revelstoke <span class="act-tag">Evening</span></p>
+          <p class="act-body">Revelstoke punches above its size — good food, craft beer, lively Mackenzie Ave. Try Dose Coffee in the morning. Check in and rest; tomorrow is another drive day.</p>
+        </div>
+      </li>
+    </ul>
+    <div class="callout warn">
+      <strong>The Long Day — Plan Around It</strong>
+      640 km is the most demanding driving day of the trip. Depart by 7:30–8:00 AM to reach Revelstoke before 7 PM. The Mt. Robson and Rogers Pass stops are the natural breaks — don't skip them, but keep them to 20–30 min each.
+    </div>
+  </section>
+
+  <!-- ── DAYS 7–9 ──────────────────────────────────────────────────── -->
+  <section id="day7" class="page">
+    <div class="section-header">
+      <div class="day-badge multi"><span class="db-label">Days</span><span class="db-num">7–9</span></div>
+      <div class="sh-meta">
+        <p class="sh-date">Saturday–Monday, August 24–26, 2026</p>
+        <h2 class="sh-title">Whistler</h2>
+        <span class="drive-chip">Revelstoke → Whistler: 475 km · ~5 hr via Hwy 1 W + Hwy 99</span>
+      </div>
+    </div>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <p class="col-label">Aug 24 — Drive + Arrival</p>
+        <ul class="activities">
+          <li class="act">
+            <span class="act-dot"></span>
+            <div>
+              <p class="act-title">Drive Revelstoke → Whistler <span class="act-tag">Morning · ~5 hr</span></p>
+              <p class="act-body">Hwy 1 West to Cache Creek, then Hwy 99 South through Lillooet and Pemberton (Duffey Lake Road) — a spectacular mountain route in its own right. Arrive Whistler Village by early afternoon.</p>
+            </div>
+          </li>
+          <li class="act">
+            <span class="act-dot"></span>
+            <div>
+              <p class="act-title">Peak 2 Peak Gondola <span class="act-tag">Afternoon · Pursuit Pass</span></p>
+              <p class="act-body">The world's longest unsupported gondola span (3 km, 436m above the valley). Connects Whistler and Blackcomb peaks at 2,182m. A glass-floored cabin runs on the hour. Take it first — it closes in the evening.</p>
+            </div>
+          </li>
+          <li class="act">
+            <span class="act-dot"></span>
+            <div>
+              <p class="act-title">Whistler Village + Alta Lake <span class="act-tag">Evening</span></p>
+              <p class="act-body">Walk the car-free pedestrian village. Alta Lake is a 10-min drive — kayak or SUP rentals, calm water, and mountain reflections. Good dinner on the Village Stroll.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="col-label">Aug 25–26 — Full Days in Whistler</p>
+        <ul class="activities">
+          <li class="act">
+            <span class="act-dot"></span>
+            <div>
+              <p class="act-title">Garibaldi Lake Trail <span class="act-tag">Full day · 18 km rt · Strenuous</span></p>
+              <p class="act-body">Best big hike of the trip. Volcanic-cinder slopes open onto one of BC's most striking lakes — turquoise water ringed by glaciers and jagged peaks. Start by 7 AM, pack lunch. ~6 hrs roundtrip.</p>
+            </div>
+          </li>
+          <li class="act">
+            <span class="act-dot"></span>
+            <div>
+              <p class="act-title">Brandywine Falls <span class="act-tag">20 min south · Easy</span></p>
+              <p class="act-body">BC's most dramatic roadside waterfall — 70m drop into a volcanic rock pool. 10-minute walk from parking. If the group needs a rest day from big hiking, this + Green Lake is a perfect half-day.</p>
+            </div>
+          </li>
+          <li class="act">
+            <span class="act-dot"></span>
+            <div>
+              <p class="act-title">Lost Lake Park + Green Lake <span class="act-tag">Relaxed afternoon</span></p>
+              <p class="act-body">Lost Lake: 7 km forest loop with a swimming dock, free and beautiful. Green Lake: emerald-coloured water, SUP and kayak rentals, great for a warm afternoon.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout tip" style="margin-top:24px;">
+      <strong>Garibaldi vs. Easy Day — Pick One</strong>
+      Garibaldi Lake is a full, strenuous day. If the group wants lower effort, do Brandywine Falls (30 min), Lost Lake loop (2 hrs), and Green Lake (1 hr) — equally beautiful, half the effort. Both options are excellent.
+    </div>
+  </section>
+
+  <!-- ── DAY 10 ───────────────────────────────────────────────────── -->
+  <section id="day10" class="page">
+    <div class="section-header">
+      <div class="day-badge"><span class="db-label">Day</span><span class="db-num">10</span></div>
+      <div class="sh-meta">
+        <p class="sh-date">Tuesday, August 27, 2026</p>
+        <h2 class="sh-title">Sea to Sky → Vancouver → Fly Out</h2>
+        <span class="drive-chip">125 km · ~2 hr + stops · Return SUV at YVR</span>
+      </div>
+    </div>
+    <div class="gold-rule"></div>
+    <ul class="activities">
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Drive Sea to Sky Highway — Hwy 99 South <span class="act-tag">Morning</span></p>
+          <p class="act-body">One of Canada's great drives. The road hugs Pacific fjord shoreline with the Coast Mountains rising straight up on the east side. Howe Sound opens dramatically south of Squamish.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Shannon Falls Provincial Park <span class="act-tag">Near Squamish · 10 min walk</span></p>
+          <p class="act-body">BC's third-tallest waterfall at 335m — a curtain of water plunging onto a rocky base. Five-minute paved walk from the parking lot. Easy, dramatic, and free. Do not skip this one on the last day.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Stawamus Chief viewpoint <span class="act-tag">Adjacent to Shannon Falls</span></p>
+          <p class="act-body">652m granite monolith — North America's second-largest granite face. Pull off for the view from the parking area. No hike needed for an excellent photo.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Continue to Vancouver <span class="act-tag">30 min from Squamish</span></p>
+          <p class="act-body">Through West Vancouver and into the city. If the flight is evening: drop bags, walk the Stanley Park Seawall (10 km flat loop), visit Granville Island Market, or just eat well in Yaletown.</p>
+        </div>
+      </li>
+      <li class="act">
+        <span class="act-dot"></span>
+        <div>
+          <p class="act-title">Return SUV at YVR + Fly Out <span class="act-tag">Per flight schedule</span></p>
+          <p class="act-body">YVR is well-signed for car returns. Allow 3 hrs before departure during peak August — rental return queues run long, and Canada customs/security adds time. Confirm one-way drop instructions with your rental company before Day 1.</p>
+        </div>
+      </li>
+    </ul>
+    <div class="callout tip">
+      <strong>Sea to Sky Tip</strong>
+      The drive from Whistler to Vancouver is only 2 hrs non-stop. Shannon Falls + the Chief viewpoint add just 30–45 minutes. Do both — they're adjacent and the waterfall is one of the finest quick stops on the entire trip.
+    </div>
+  </section>
+
+  <!-- ── HIGHLIGHTS + TIPS ─────────────────────────────────────────── -->
+  <section id="tips" class="page">
+    <p class="pg-eyebrow">Quick Reference</p>
+    <h2 class="pg-title">Must-See Highlights + Trip Tips</h2>
+    <div class="gold-rule"></div>
+
+    <div class="hl-grid">
+      <div class="hl-card">
+        <p class="hl-name">Moraine Lake</p>
+        <p class="hl-desc">Valley of Ten Peaks — electric blue glacial water backed by ten mountains above 3,000m. The Rock Pile viewpoint is mandatory. Go at sunrise for the shot.</p>
+      </div>
+      <div class="hl-card">
+        <p class="hl-name">Lake Louise</p>
+        <p class="hl-desc">Victoria Glacier reflection, Château backdrop, and the Lake Agnes Tea House hike (7.4 km rt). One of the Rockies' most complete destinations.</p>
+      </div>
+      <div class="hl-card">
+        <p class="hl-name">Peyto Lake</p>
+        <p class="hl-desc">Wolf-head shaped viewpoint from Bow Summit. The most photographed lake in Alberta — a 20-minute walk from the highway that pays back ten-fold.</p>
+      </div>
+      <div class="hl-card">
+        <p class="hl-name">Columbia Icefield</p>
+        <p class="hl-desc">Walk on the Athabasca Glacier + Glacier Skywalk glass platform. One of the most accessible glaciers in North America. Both covered by Pursuit Pass.</p>
+      </div>
+      <div class="hl-card">
+        <p class="hl-name">Maligne Lake</p>
+        <p class="hl-desc">Spirit Island boat cruise — the glacier-framed island is one of the most reproduced landscape photos in Canada. Book the cruise months in advance for August.</p>
+      </div>
+      <div class="hl-card">
+        <p class="hl-name">Sea to Sky Hwy</p>
+        <p class="hl-desc">Shannon Falls + Stawamus Chief + Howe Sound fjord coastline. The perfect finale. Two hours from Whistler to Vancouver with scenery the whole way.</p>
+      </div>
+    </div>
+
+    <div class="tips-grid">
+      <div class="tip-card">
+        <p class="tip-card-title">Parks Canada Discovery Pass</p>
+        <p>Required for Banff, Jasper &amp; Glacier National Parks. Buy at parks.canada.ca. Group pass available. Covers all three parks on this trip — don't pay per-entry each day.</p>
+      </div>
+      <div class="tip-card">
+        <p class="tip-card-title">Pursuit Pass Coverage</p>
+        <p>Confirm your specific Pursuit package before going. Standard coverage: Banff Gondola, Glacier Skywalk + Athabasca Glacier Walk, Peak 2 Peak Gondola in Whistler.</p>
+      </div>
+      <div class="tip-card">
+        <p class="tip-card-title">Bear Safety on Every Trail</p>
+        <p>Carry bear spray and know how to use it. Keep 100m from bears and wolves, 30m from elk and deer. In Jasper, elk walk in town — give them room and don't approach.</p>
+      </div>
+      <div class="tip-card">
+        <p class="tip-card-title">Pre-Trip Booking Checklist</p>
+        <p>Moraine Lake shuttle · Spirit Island cruise · Gondola reservations · All 4 Airbnbs/hotels · SUV one-way drop confirmed · Parks Canada Discovery Pass</p>
+      </div>
+      <div class="tip-card">
+        <p class="tip-card-title">August Weather + Packing</p>
+        <p>Warm days (15–25°C), long daylight, wildflowers in bloom, all roads open. Evening temperatures drop quickly in the mountains. Pack a shell jacket, layers, and sunscreen. Rain possible any day.</p>
+      </div>
+      <div class="tip-card">
+        <p class="tip-card-title">What's Included in This Trip</p>
+        <p>Pursuit Pass (gondola + icefield attractions) · SUV one-way rental YYC → YVR · 4 accommodation bases · Parks Canada Discovery Pass · All driving on paved roads</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      // ── Scroll-spy ──────────────────────────────────────────────
+      const sections = document.querySelectorAll('section[id]');
+      const links = document.querySelectorAll('.top-nav a');
+      const navHeight = 48;
+
+      function spy() {
+        let current = '';
+        sections.forEach(function(s) {
+          if (s.getBoundingClientRect().top <= navHeight + 10) current = s.id;
+        });
+        links.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+        });
+      }
+      window.addEventListener('scroll', spy, { passive: true });
+      spy();
+    })();
+  </script>
 </body>
 </html>
