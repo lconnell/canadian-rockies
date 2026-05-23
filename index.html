@@ -15,10 +15,10 @@
       --fg:      oklch(21% 0.045 155);
       --muted:   oklch(47% 0.018 160);
       --border:  oklch(86% 0.012 145);
-      --accent:  oklch(48% 0.095 185);
-      --green:   oklch(38% 0.095 155);
+      --accent:  oklch(65% 0.10 185);
+      --green:   oklch(43% 0.085 150);
       --orange:  oklch(57% 0.12 60);
-      --navy:    oklch(22% 0.07 165);
+      --navy:    oklch(36% 0.075 158);
 
       --f-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
       --f-body:    'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -109,8 +109,8 @@
       font-size: 11px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 22px;
+      color: rgba(255,255,255,0.68);
+      margin-bottom: 24px;
     }
     .cover-title {
       font-family: var(--f-display);
@@ -118,15 +118,15 @@
       font-weight: 700;
       line-height: 1.04;
       color: #fff;
-      margin-bottom: 16px;
+      max-width: 760px;
+      margin-bottom: 20px;
     }
-    .cover-title .arrow { color: var(--accent); }
     .cover-subtitle {
       font-size: 17px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 52px;
-      letter-spacing: 0.02em;
+      font-weight: 400;
+      color: rgba(255,255,255,0.76);
+      margin-bottom: 58px;
+      letter-spacing: 0.01em;
     }
     .bases-label {
       font-family: var(--f-mono);
@@ -142,8 +142,8 @@
       gap: 14px;
     }
     .base-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
       border-top: 3px solid var(--accent);
       padding: 20px 18px 22px;
     }
@@ -164,22 +164,22 @@
     }
     .base-dates {
       font-size: 12px;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.62);
       font-variant-numeric: tabular-nums;
       margin-bottom: 10px;
     }
     .base-nights {
       display: inline-block;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.14);
       font-family: var(--f-mono);
       font-size: 10px;
       padding: 3px 9px;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255,255,255,0.78);
       margin-bottom: 12px;
     }
     .base-desc {
       font-size: 12px;
-      color: rgba(255,255,255,0.38);
+      color: rgba(255,255,255,0.58);
       line-height: 1.5;
     }
     .cover-mountains {
@@ -494,7 +494,10 @@
     /* ── Mobile ────────────────────────────────────────────────── */
     @media (max-width: 660px) {
       .page { padding: 64px 22px 48px; }
-      .bases-grid { grid-template-columns: repeat(2, 1fr); }
+      .cover-inner { padding: 72px 26px 0; }
+      .cover-title { font-size: 42px; }
+      .cover-subtitle { margin-bottom: 44px; }
+      .bases-grid { grid-template-columns: 1fr; }
       .two-col { grid-template-columns: 1fr; gap: 32px; }
       .hl-grid { grid-template-columns: repeat(2, 1fr); }
       .tips-grid { grid-template-columns: 1fr; }
@@ -522,12 +525,9 @@
   <!-- ── COVER ───────────────────────────────────────────────────── -->
   <section id="cover" class="page">
     <div class="cover-inner">
-      <p class="cover-eyebrow">Aug 18 – 27, 2026 &nbsp;·&nbsp; Alberta &amp; British Columbia, Canada</p>
-      <h1 class="cover-title">
-        Canadian Rockies<br>
-        <span class="arrow">→</span> British Columbia
-      </h1>
-      <p class="cover-subtitle">A Road Trip Itinerary — Calgary to Vancouver</p>
+      <p class="cover-eyebrow">Alberta &amp; British Columbia</p>
+      <h1 class="cover-title">Canadian Rockies Road Trip</h1>
+      <p class="cover-subtitle">Calgary → Vancouver · Aug 18–27, 2026</p>
 
       <p class="bases-label">4 Base Camps</p>
       <div class="bases-grid">
