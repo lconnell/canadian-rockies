@@ -15,10 +15,13 @@
       --fg:      oklch(21% 0.045 155);
       --muted:   oklch(47% 0.018 160);
       --border:  oklch(86% 0.012 145);
-      --accent:  oklch(65% 0.10 185);
-      --green:   oklch(43% 0.085 150);
+      --accent:  oklch(56% 0.095 220);
+      --green:   oklch(38% 0.075 150);
       --orange:  oklch(57% 0.12 60);
-      --navy:    oklch(36% 0.075 158);
+      --navy:    oklch(27% 0.045 165);
+      --hero-bg: oklch(92% 0.012 105);
+      --hero-fg: oklch(22% 0.045 160);
+      --hero-muted: oklch(43% 0.025 155);
 
       --f-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
       --f-body:    'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -96,8 +99,8 @@
     #cover {
       max-width: 100%;
       padding: 0;
-      background: var(--navy);
-      color: #fff;
+      background: var(--hero-bg);
+      color: var(--hero-fg);
     }
     .cover-inner {
       max-width: 900px;
@@ -109,7 +112,7 @@
       font-size: 11px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.68);
+      color: var(--hero-muted);
       margin-bottom: 24px;
     }
     .cover-title {
@@ -117,14 +120,14 @@
       font-size: clamp(38px, 5.5vw, 70px);
       font-weight: 700;
       line-height: 1.04;
-      color: #fff;
+      color: var(--hero-fg);
       max-width: 760px;
       margin-bottom: 20px;
     }
     .cover-subtitle {
       font-size: 17px;
       font-weight: 400;
-      color: rgba(255,255,255,0.76);
+      color: var(--hero-muted);
       margin-bottom: 58px;
       letter-spacing: 0.01em;
     }
@@ -142,8 +145,8 @@
       gap: 14px;
     }
     .base-card {
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(42,70,62,0.14);
       border-top: 3px solid var(--accent);
       padding: 20px 18px 22px;
     }
@@ -158,28 +161,28 @@
       font-family: var(--f-display);
       font-size: 19px;
       font-weight: 700;
-      color: #fff;
+      color: var(--hero-fg);
       line-height: 1.2;
       margin-bottom: 8px;
     }
     .base-dates {
       font-size: 12px;
-      color: rgba(255,255,255,0.62);
+      color: var(--hero-muted);
       font-variant-numeric: tabular-nums;
       margin-bottom: 10px;
     }
     .base-nights {
       display: inline-block;
-      background: rgba(255,255,255,0.14);
+      background: rgba(42,70,62,0.08);
       font-family: var(--f-mono);
       font-size: 10px;
       padding: 3px 9px;
-      color: rgba(255,255,255,0.78);
+      color: var(--hero-muted);
       margin-bottom: 12px;
     }
     .base-desc {
       font-size: 12px;
-      color: rgba(255,255,255,0.58);
+      color: oklch(38% 0.024 155);
       line-height: 1.5;
     }
     .cover-mountains {
@@ -467,7 +470,7 @@
         max-width: 100%;
         page-break-before: auto;
         break-before: auto;
-        background: var(--navy) !important;
+        background: var(--hero-bg) !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
@@ -564,8 +567,8 @@
 
     <!-- Mountain silhouette decoration -->
     <svg class="cover-mountains" viewBox="0 0 1200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMax slice">
-      <polygon points="0,140 100,55 175,105 250,35 340,90 410,20 490,75 560,10 640,65 710,30 790,80 860,40 940,85 1010,25 1080,70 1150,45 1200,80 1200,140" fill="rgba(255,255,255,0.07)"/>
-      <polygon points="0,140 60,90 140,120 220,75 310,115 390,65 470,100 540,50 610,90 680,60 760,95 840,70 920,105 990,60 1060,90 1130,65 1200,95 1200,140" fill="rgba(255,255,255,0.11)"/>
+      <polygon points="0,140 100,55 175,105 250,35 340,90 410,20 490,75 560,10 640,65 710,30 790,80 860,40 940,85 1010,25 1080,70 1150,45 1200,80 1200,140" fill="rgba(42,70,62,0.08)"/>
+      <polygon points="0,140 60,90 140,120 220,75 310,115 390,65 470,100 540,50 610,90 680,60 760,95 840,70 920,105 990,60 1060,90 1130,65 1200,95 1200,140" fill="rgba(42,70,62,0.13)"/>
     </svg>
   </section>
 
