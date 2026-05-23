@@ -125,7 +125,32 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 20px;
       margin-bottom: 16px;
+    }
+    .cover-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .pdf-link {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid color-mix(in oklch, var(--accent) 65%, transparent);
+      padding: 6px 10px;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .pdf-link:hover,
+    .pdf-link:focus-visible {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      outline: none;
     }
     .cover-title .arrow { color: var(--accent); }
     .cover-subtitle {
@@ -502,6 +527,7 @@
       body { background: #fff; }
 
       .top-nav { display: none !important; }
+      .pdf-link { display: none !important; }
 
       .page {
         padding: 0 0 24px;
@@ -543,6 +569,15 @@
     /* ── Mobile ────────────────────────────────────────────────── */
     @media (max-width: 660px) {
       .page { padding: 64px 22px 48px; }
+      .cover-lower-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .cover-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
       .bases-grid { grid-template-columns: repeat(2, 1fr); }
       .two-col { grid-template-columns: 1fr; gap: 32px; }
       .hl-grid { grid-template-columns: repeat(2, 1fr); }
@@ -586,7 +621,10 @@
       <div class="cover-inner">
         <div class="cover-lower-header">
           <p class="bases-label">4 Base Camps</p>
-          <p class="cover-eyebrow">Aug 18 – 27, 2026 &nbsp;·&nbsp; Alberta &amp; British Columbia, Canada</p>
+          <div class="cover-actions">
+            <p class="cover-eyebrow">Aug 18 – 27, 2026 &nbsp;·&nbsp; Alberta &amp; British Columbia, Canada</p>
+            <a class="pdf-link" href="Canadian_Rockies_Road_Trip_Aug2026.pdf" download>Download PDF</a>
+          </div>
         </div>
         <div class="bases-grid">
           <div class="base-card">
