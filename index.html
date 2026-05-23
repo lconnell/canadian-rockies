@@ -128,26 +128,6 @@
       margin-bottom: 52px;
       letter-spacing: 0.02em;
     }
-    .cover-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 60px;
-    }
-    .stat-chip {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 18px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-    }
-    .stat-chip .s-icon { font-size: 18px; line-height: 1; }
-    .stat-chip .s-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.88);
-    }
     .bases-label {
       font-family: var(--f-mono);
       font-size: 10px;
@@ -518,7 +498,6 @@
       .two-col { grid-template-columns: 1fr; gap: 32px; }
       .hl-grid { grid-template-columns: repeat(2, 1fr); }
       .tips-grid { grid-template-columns: 1fr; }
-      .cover-stats { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
@@ -549,24 +528,6 @@
         <span class="arrow">→</span> British Columbia
       </h1>
       <p class="cover-subtitle">A Road Trip Itinerary — Calgary to Vancouver</p>
-
-      <div class="cover-stats">
-        <div class="stat-chip">
-          <span class="s-icon">📅</span><span class="s-label">10 Days</span>
-        </div>
-        <div class="stat-chip">
-          <span class="s-icon">🚙</span><span class="s-label">SUV Rental · One-way YYC → YVR</span>
-        </div>
-        <div class="stat-chip">
-          <span class="s-icon">👥</span><span class="s-label">5–6 People</span>
-        </div>
-        <div class="stat-chip">
-          <span class="s-icon">🏠</span><span class="s-label">Airbnb / Hotels</span>
-        </div>
-        <div class="stat-chip">
-          <span class="s-icon">🎫</span><span class="s-label">Pursuit Pass Included</span>
-        </div>
-      </div>
 
       <p class="bases-label">4 Base Camps</p>
       <div class="bases-grid">
