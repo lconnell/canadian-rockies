@@ -84,7 +84,21 @@
       border-bottom-color: var(--accent);
     }
     .top-nav .nav-pdf {
-      color: var(--accent);
+      height: 32px;
+      margin-left: 12px;
+      padding: 0 14px;
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+      border-bottom: 1px solid var(--accent);
+      align-self: center;
+    }
+    .top-nav .nav-pdf:hover,
+    .top-nav .nav-pdf:focus-visible {
+      color: #fff;
+      border-color: color-mix(in oklch, var(--accent) 70%, #fff);
+      background: color-mix(in oklch, var(--accent) 82%, #fff);
+      outline: none;
     }
 
     /* ── Page sections ─────────────────────────────────────────── */
@@ -509,12 +523,11 @@
       .page {
         padding: 1.4cm 1.8cm 1.2cm;
         max-width: 100%;
-        page-break-before: always;
-        break-before: page;
+        page-break-before: auto;
+        break-before: auto;
       }
       #cover {
         max-width: 100%;
-        min-height: 100vh;
         page-break-before: auto;
         break-before: auto;
         background: var(--navy) !important;
