@@ -83,6 +83,9 @@
       color: var(--accent);
       border-bottom-color: var(--accent);
     }
+    .top-nav .nav-pdf {
+      color: var(--accent);
+    }
 
     /* ── Page sections ─────────────────────────────────────────── */
     .page {
@@ -125,32 +128,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
       margin-bottom: 16px;
-    }
-    .cover-actions {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .pdf-link {
-      font-family: var(--f-mono);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      border: 1px solid color-mix(in oklch, var(--accent) 65%, transparent);
-      padding: 6px 10px;
-      white-space: nowrap;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
-    }
-    .pdf-link:hover,
-    .pdf-link:focus-visible {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-      outline: none;
     }
     .cover-title .arrow { color: var(--accent); }
     .cover-subtitle {
@@ -521,22 +499,22 @@
 
     /* ── Print ─────────────────────────────────────────────────── */
     @media print {
-      @page { size: letter portrait; margin: 1.4cm 1.8cm; }
+      @page { size: letter portrait; margin: 0; }
 
       html { font-size: 12px; }
-      body { background: #fff; }
+      body { background: var(--bg); }
 
       .top-nav { display: none !important; }
-      .pdf-link { display: none !important; }
 
       .page {
-        padding: 0 0 24px;
+        padding: 1.4cm 1.8cm 1.2cm;
         max-width: 100%;
         page-break-before: always;
         break-before: page;
       }
       #cover {
         max-width: 100%;
+        min-height: 100vh;
         page-break-before: auto;
         break-before: auto;
         background: var(--navy) !important;
@@ -546,7 +524,7 @@
       .cover-hero { height: 200px; }
       .cover-hero-text { padding: 0 28px 24px; }
       .cover-lower { padding: 20px 0 32px; }
-      .cover-inner { padding: 0; }
+      .cover-inner { padding: 0 28px; }
       .bases-grid { grid-template-columns: repeat(4, 1fr); }
       .hl-grid { grid-template-columns: repeat(3, 1fr); }
       .tips-grid { grid-template-columns: repeat(2, 1fr); }
@@ -569,15 +547,6 @@
     /* ── Mobile ────────────────────────────────────────────────── */
     @media (max-width: 660px) {
       .page { padding: 64px 22px 48px; }
-      .cover-lower-header {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .cover-actions {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-      }
       .bases-grid { grid-template-columns: repeat(2, 1fr); }
       .two-col { grid-template-columns: 1fr; gap: 32px; }
       .hl-grid { grid-template-columns: repeat(2, 1fr); }
@@ -602,6 +571,7 @@
     <a href="#day7">Days 7–9</a>
     <a href="#day10">Day 10</a>
     <a href="#tips">Tips</a>
+    <a class="nav-pdf" href="Canadian_Rockies_Road_Trip_Aug2026.pdf" download>Download PDF</a>
   </nav>
 
   <!-- ── COVER ───────────────────────────────────────────────────── -->
@@ -621,10 +591,7 @@
       <div class="cover-inner">
         <div class="cover-lower-header">
           <p class="bases-label">4 Base Camps</p>
-          <div class="cover-actions">
-            <p class="cover-eyebrow">Aug 18 – 27, 2026 &nbsp;·&nbsp; Alberta &amp; British Columbia, Canada</p>
-            <a class="pdf-link" href="Canadian_Rockies_Road_Trip_Aug2026.pdf" download>Download PDF</a>
-          </div>
+          <p class="cover-eyebrow">Aug 18 – 27, 2026 &nbsp;·&nbsp; Alberta &amp; British Columbia, Canada</p>
         </div>
         <div class="bases-grid">
           <div class="base-card">
