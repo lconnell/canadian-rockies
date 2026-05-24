@@ -19,7 +19,7 @@
       --accent:  oklch(54% 0.13 55);
       --steel:   oklch(38% 0.08 250);
       --orange:  oklch(52% 0.15 42);
-      --navy:    oklch(22% 0.06 250);
+      --navy:    #00466e;
 
       --f-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
       --f-body:    'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -182,7 +182,7 @@
     }
     .bases-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 14px;
     }
     .base-card {
@@ -538,7 +538,7 @@
       .cover-hero-text { padding: 0 28px 24px; }
       .cover-lower { padding: 20px 0 32px; }
       .cover-inner { padding: 0 28px; }
-      .bases-grid { grid-template-columns: repeat(3, 1fr); }
+      .bases-grid { grid-template-columns: repeat(4, 1fr); }
       .hl-grid { grid-template-columns: repeat(3, 1fr); }
       .tips-grid { grid-template-columns: repeat(2, 1fr); }
       .two-col { grid-template-columns: 1fr 1fr; }
@@ -568,8 +568,10 @@
       }
       .cover-eyebrow {
         font-size: 9px;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.08em;
         line-height: 1.8;
+        max-width: 100%;
+        overflow-wrap: anywhere;
       }
       .bases-grid { grid-template-columns: 1fr; }
       .two-col { grid-template-columns: 1fr; gap: 32px; }
@@ -592,7 +594,8 @@
     <a href="#day4">Day 4</a>
     <a href="#day5">Day 5</a>
     <a href="#day6">Day 6</a>
-    <a href="#day7">Days 7–9</a>
+    <a href="#day7">Days 7–8</a>
+    <a href="#day9">Day 9</a>
     <a href="#day10">Day 10</a>
     <a href="#tips">Tips</a>
     <a class="nav-pdf" href="Canadian_Rockies_Road_Trip_Aug2026.pdf" download>Download PDF</a>
@@ -612,8 +615,8 @@
     <div class="cover-lower">
       <div class="cover-inner">
         <div class="cover-lower-header">
-          <p class="bases-label">3 Base Camps</p>
-          <p class="cover-eyebrow">Aug 18 – 27, 2026 &nbsp;·&nbsp; Canmore · Golden · Valemount</p>
+          <p class="bases-label">4 Base Camps</p>
+          <p class="cover-eyebrow">Aug 18 – 27, 2026 &nbsp;·&nbsp; YYC Round Trip</p>
         </div>
         <div class="bases-grid">
           <div class="base-card">
@@ -633,9 +636,16 @@
           <div class="base-card">
             <p class="base-num">BASE 03</p>
             <p class="base-name">Valemount, BC</p>
-            <p class="base-dates">Aug 23 – 27</p>
-            <span class="base-nights">4 Nights</span>
+            <p class="base-dates">Aug 23 – 26</p>
+            <span class="base-nights">3 Nights</span>
             <p class="base-desc">Mount Robson · Jasper day trips · Maligne Lake · Pyramid Lake</p>
+          </div>
+          <div class="base-card">
+            <p class="base-num">BASE 04</p>
+            <p class="base-name">Calgary Airport Area</p>
+            <p class="base-dates">Aug 26 – 27</p>
+            <span class="base-nights">1 Night</span>
+            <p class="base-desc">Positioning night · easy YYC rental return · fly out without the long drive</p>
           </div>
         </div>
       </div>
@@ -660,7 +670,7 @@
         <path d="M 115,205 C 148,175 178,145 205,108 C 238,62 284,52 332,82 C 380,112 430,130 485,138 C 535,146 585,175 624,205 C 642,219 654,229 660,235" stroke="oklch(42% 0.10 155)" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8,6"/>
         <circle cx="660" cy="235" r="10" fill="oklch(20% 0.04 255)" stroke="#F7F5F0" stroke-width="2.5"/>
         <text x="660" y="214" font-family="sans-serif" font-weight="700" font-size="12" fill="oklch(20% 0.04 255)" text-anchor="middle">Calgary</text>
-        <text x="660" y="226" font-family="monospace" font-size="9" fill="oklch(50% 0.015 240)" text-anchor="middle">YYC · Start / End</text>
+        <text x="660" y="226" font-family="monospace" font-size="9" fill="oklch(50% 0.015 240)" text-anchor="middle">YYC · Start / Final night</text>
         <circle cx="510" cy="188" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
         <text x="510" y="165" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Canmore</text>
         <text x="510" y="177" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 1 · Banff</text>
@@ -685,7 +695,7 @@
         <text x="450" y="202" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">125 km</text>
         <text x="348" y="104" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">130 km</text>
         <text x="212" y="154" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">230–310 km</text>
-        <text x="380" y="150" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">410 km return</text>
+        <text x="380" y="150" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">530 km return</text>
         <circle cx="26" cy="272" r="6" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="1.5"/>
         <text x="38" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Overnight base</text>
         <circle cx="128" cy="272" r="4.5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="1.5"/>
@@ -705,8 +715,9 @@
         <tr><td>Canmore → Golden</td><td class="mn">130 km</td><td class="mn">1.5–2.5 hr + stops</td><td>Hwy 1 W through Lake Louise and Kicking Horse Pass</td></tr>
         <tr><td>Golden → Valemount</td><td class="mn">~360–390 km</td><td class="mn">5–6 hr + stops</td><td>Hwy 1 E → Icefields Parkway / Hwy 93 N → Hwy 16 W</td></tr>
         <tr><td>Valemount ↔ Jasper</td><td class="mn">120 km each way</td><td class="mn">~1.5 hr each way</td><td>Yellowhead Hwy 16 through Mount Robson</td></tr>
-        <tr><td>Valemount → Calgary YYC</td><td class="mn">~530 km</td><td class="mn">6.5–7.5 hr + stops</td><td>Hwy 16 E → Hwy 93 S → Hwy 1 E → Hwy 2 S</td></tr>
-        <tr><td>Total trip driving</td><td class="mn">~1,300+ km</td><td class="mn">~18–22 hr</td><td style="color:var(--muted);font-size:12px;">Includes Jasper day-trip access from Valemount</td></tr>
+        <tr><td>Valemount → Calgary airport area</td><td class="mn">~530 km</td><td class="mn">6.5–7.5 hr + stops</td><td>Hwy 16 E → Hwy 93 S → Hwy 1 E → Hwy 2 S</td></tr>
+        <tr><td>Calgary hotel → YYC</td><td class="mn">5–20 km</td><td class="mn">10–25 min</td><td>Airport-area local roads</td></tr>
+        <tr><td>Total trip driving</td><td class="mn">~1,300+ km</td><td class="mn">~18–22 hr</td><td style="color:var(--muted);font-size:12px;">Long drive moved to Aug 26, not departure day</td></tr>
       </tbody>
     </table>
   </section>
@@ -789,7 +800,7 @@
 
   <!-- ── DAYS 7–9 ──────────────────────────────────────────────────── -->
   <section id="day7" class="page">
-    <div class="section-header"><div class="day-badge multi"><span class="db-label">Days</span><span class="db-num">7–9</span></div><div class="sh-meta"><p class="sh-date">Monday–Wednesday, August 24–26, 2026</p><h2 class="sh-title">Valemount Base + Jasper Day Trips</h2><span class="drive-chip">120 km / ~1.5 hr each way to Jasper</span></div></div>
+    <div class="section-header"><div class="day-badge multi"><span class="db-label">Days</span><span class="db-num">7–8</span></div><div class="sh-meta"><p class="sh-date">Monday–Tuesday, August 24–25, 2026</p><h2 class="sh-title">Valemount Base + Jasper Day Trips</h2><span class="drive-chip">120 km / ~1.5 hr each way to Jasper</span></div></div>
     <div class="gold-rule"></div>
     <div class="two-col">
       <div><p class="col-label">Aug 24 — Maligne Road</p><ul class="activities">
@@ -797,25 +808,36 @@
         <li class="act"><span class="act-dot"></span><div><p class="act-title">Maligne Lake Cruise <span class="act-tag">Book ahead · Pursuit Pass option</span></p><p class="act-body">Use this as the anchor for the Jasper stay. Spirit Island is the postcard view, and the drive itself is part of the experience.</p></div></li>
         <li class="act"><span class="act-dot"></span><div><p class="act-title">Jasper town dinner <span class="act-tag">Evening</span></p><p class="act-body">Keep the evening light after the longer lake road. Walk Connaught Drive and watch for elk around town.</p></div></li>
       </ul></div>
-      <div><p class="col-label">Aug 25–26 — Flexible Jasper Days</p><ul class="activities">
+      <div><p class="col-label">Aug 25 — Flexible Jasper Day</p><ul class="activities">
         <li class="act"><span class="act-dot"></span><div><p class="act-title">Pyramid Lake + Patricia Lake <span class="act-tag">Half day</span></p><p class="act-body">Easy, beautiful, and close to town. Walk Pyramid Island, rent paddles if conditions are calm, or keep it as a recovery morning.</p></div></li>
         <li class="act"><span class="act-dot"></span><div><p class="act-title">Jasper SkyTram or Miette Hot Springs <span class="act-tag">Choose one</span></p><p class="act-body">SkyTram is the view-focused option if running and included in your package. Miette is the softer recovery day if the group wants a break.</p></div></li>
         <li class="act"><span class="act-dot"></span><div><p class="act-title">Athabasca River valley + stargazing <span class="act-tag">Evening</span></p><p class="act-body">Use clear nights for dark-sky viewing. Jasper is at its best when the itinerary leaves room for weather, wildlife, and slower moments.</p></div></li>
       </ul></div>
     </div>
-    <div class="callout tip" style="margin-top:24px;"><strong>Use Valemount Strategically</strong> Do one big Jasper/Maligne day, one close-to-Valemount/Mount Robson recovery day, and one flexible Jasper town or Pyramid Lake day. That avoids three punishing out-and-back drives in a row.</div>
+    <div class="callout tip" style="margin-top:24px;"><strong>Use Valemount Strategically</strong> Do one big Jasper/Maligne day and one flexible Jasper town, Pyramid Lake, Mount Robson, or recovery day. The long return drive moves to Aug 26 so departure day stays easy.</div>
+  </section>
+
+  <!-- ── DAY 9 ────────────────────────────────────────────────────── -->
+  <section id="day9" class="page">
+    <div class="section-header"><div class="day-badge"><span class="db-label">Day</span><span class="db-num">9</span></div><div class="sh-meta"><p class="sh-date">Wednesday, August 26, 2026</p><h2 class="sh-title">Valemount → Calgary Positioning Night</h2><span class="drive-chip">~530 km · 6.5–7.5 hr + stops · Sleep near YYC</span></div></div>
+    <div class="gold-rule"></div>
+    <ul class="activities">
+      <li class="act"><span class="act-dot"></span><div><p class="act-title">Early checkout from Valemount <span class="act-tag">Morning</span></p><p class="act-body">Make this the long travel day instead of departure day. Check DriveBC and 511 Alberta before leaving, then head east through Mount Robson and Jasper.</p></div></li>
+      <li class="act"><span class="act-dot"></span><div><p class="act-title">Short scenic stops only <span class="act-tag">Flexible</span></p><p class="act-body">Use this direction for any quick missed stops: Mount Robson viewpoint, Athabasca Falls, Saskatchewan River Crossing, Bow Lake, or Peyto Lake. Keep the stops disciplined so the day does not stretch too late.</p></div></li>
+      <li class="act"><span class="act-dot"></span><div><p class="act-title">Check into Calgary airport-area hotel <span class="act-tag">Evening</span></p><p class="act-body">Stay near YYC or along the north side of Calgary. This removes the stressful mountain drive from flight day and makes the rental return straightforward.</p></div></li>
+    </ul>
+    <div class="callout tip"><strong>Why This Works Better</strong> The long Valemount-to-Calgary drive still exists, but it no longer competes with airport timing. Aug 27 becomes a short local transfer instead of a 7-hour mountain drive.</div>
   </section>
 
   <!-- ── DAY 10 ───────────────────────────────────────────────────── -->
   <section id="day10" class="page">
-    <div class="section-header"><div class="day-badge"><span class="db-label">Day</span><span class="db-num">10</span></div><div class="sh-meta"><p class="sh-date">Thursday, August 27, 2026</p><h2 class="sh-title">Valemount → Calgary → Fly Out</h2><span class="drive-chip">~530 km · 6.5–7.5 hr + stops · Return SUV at YYC</span></div></div>
+    <div class="section-header"><div class="day-badge"><span class="db-label">Day</span><span class="db-num">10</span></div><div class="sh-meta"><p class="sh-date">Thursday, August 27, 2026</p><h2 class="sh-title">Calgary → Fly Out</h2><span class="drive-chip">10–25 min local transfer · Return SUV at YYC</span></div></div>
     <div class="gold-rule"></div>
     <ul class="activities">
-      <li class="act"><span class="act-dot"></span><div><p class="act-title">Very early departure from Valemount <span class="act-tag">Morning</span></p><p class="act-body">This is the longest pure travel day. Start early, especially if flights are same-day, and check both DriveBC and 511 Alberta before leaving.</p></div></li>
-      <li class="act"><span class="act-dot"></span><div><p class="act-title">Mount Robson + Icefields Parkway southbound <span class="act-tag">Flexible</span></p><p class="act-body">Keep stops short unless the flight is late. Mount Robson, Athabasca Falls, Saskatchewan River Crossing, Bow Lake, and Peyto Lake are the natural options.</p></div></li>
-      <li class="act"><span class="act-dot"></span><div><p class="act-title">Calgary airport return <span class="act-tag">Per flight schedule</span></p><p class="act-body">Return the SUV at YYC. For an evening flight, target Calgary with a generous buffer; summer rental returns and airport lines can still run long.</p></div></li>
+      <li class="act"><span class="act-dot"></span><div><p class="act-title">Slow morning near YYC <span class="act-tag">Flight dependent</span></p><p class="act-body">Breakfast, final packing, and a short local drive. No mountain highway pressure on departure day.</p></div></li>
+      <li class="act"><span class="act-dot"></span><div><p class="act-title">Return SUV at Calgary YYC <span class="act-tag">Per flight schedule</span></p><p class="act-body">Allow the normal airport buffer for rental return, bag drop, and security. The route is now simple enough for morning, midday, or evening flights.</p></div></li>
     </ul>
-    <div class="callout warn"><strong>Flight Timing</strong> With Valemount as the final base, an evening departure from Calgary is strongly preferred. A morning or midday flight means returning toward Calgary on Aug 26 instead.</div>
+    <div class="callout tip"><strong>Departure Day</strong> This is now intentionally boring: short drive, rental return, airport. That is the point.</div>
   </section>
 
   <!-- ── HIGHLIGHTS + TIPS ─────────────────────────────────────────── -->
@@ -835,9 +857,9 @@
       <div class="tip-card"><p class="tip-card-title">Park Admission</p><p>Your dates fall inside Parks Canada's 2026 free-admission window, but shuttle tickets, paid parking, tours, and attraction reservations still need to be booked separately.</p></div>
       <div class="tip-card"><p class="tip-card-title">Pursuit Pass Coverage</p><p>Confirm the exact 2026 package. Likely candidates: Banff Gondola, Lake Minnewanka Cruise, Columbia Icefield, Maligne Lake Cruise, and Golden Skybridge.</p></div>
       <div class="tip-card"><p class="tip-card-title">Jasper Closures</p><p>Do not build the plan around Maligne Canyon or Edith Cavell for 2026. Parks Canada lists those areas closed while recovery work continues.</p></div>
-      <div class="tip-card"><p class="tip-card-title">Pre-Trip Booking Checklist</p><p>Moraine Lake shuttle · Maligne Lake Cruise · Columbia Icefield · Banff Gondola · Lake Minnewanka Cruise · Canmore, Golden, and Valemount Airbnbs · YYC round-trip SUV.</p></div>
+      <div class="tip-card"><p class="tip-card-title">Pre-Trip Booking Checklist</p><p>Moraine Lake shuttle · Maligne Lake Cruise · Columbia Icefield · Banff Gondola · Lake Minnewanka Cruise · Canmore, Golden, and Valemount Airbnbs · Calgary airport-area hotel · YYC round-trip SUV.</p></div>
       <div class="tip-card"><p class="tip-card-title">August Weather + Packing</p><p>Warm days, cool nights, fast weather changes. Pack shell jackets, layers, sunscreen, water bottles, bug spray, and footwear that can handle wet trails.</p></div>
-      <div class="tip-card"><p class="tip-card-title">Driving + Fuel Notes</p><p>Top off in Canmore, Golden, Jasper, and Valemount. Keep offline maps for Yoho, Icefields Parkway, Hwy 16, Maligne Road, and the Valemount-to-Calgary return.</p></div>
+      <div class="tip-card"><p class="tip-card-title">Driving + Fuel Notes</p><p>Top off in Canmore, Golden, Jasper, and Valemount. Keep offline maps for Yoho, Icefields Parkway, Hwy 16, Maligne Road, and the Aug 26 Valemount-to-Calgary return.</p></div>
     </div>
   </section>
 
