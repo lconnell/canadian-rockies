@@ -462,6 +462,60 @@
     }
     .mn { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
 
+    .reference-block {
+      margin-bottom: 32px;
+    }
+
+    .reference-title {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .lodging-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 12.5px;
+    }
+
+    .lodging-table th {
+      text-align: left;
+      font-family: var(--f-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .lodging-table td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .lodging-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .lodging-place {
+      font-family: var(--f-display);
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 15px;
+    }
+
+    .lodging-note {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
     /* ── Highlights grid ───────────────────────────────────────── */
     .hl-grid {
       display: grid;
@@ -545,7 +599,7 @@
       .tips-grid { grid-template-columns: repeat(2, 1fr); }
       .two-col { grid-template-columns: 1fr 1fr; }
 
-      .base-card, .hl-card, .tip-card {
+      .base-card, .hl-card, .tip-card, .lodging-table {
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
@@ -579,6 +633,11 @@
       .two-col { grid-template-columns: 1fr; gap: 32px; }
       .hl-grid { grid-template-columns: 1fr; }
       .tips-grid { grid-template-columns: 1fr; }
+      .lodging-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
       .cover-stats { flex-direction: column; gap: 10px; }
     }
   </style>
@@ -847,8 +906,52 @@
   <!-- ── HIGHLIGHTS + TIPS ─────────────────────────────────────────── -->
   <section id="tips" class="page">
     <p class="pg-eyebrow">Quick Reference</p>
-    <h2 class="pg-title">Must-See Highlights + Trip Tips</h2>
+    <h2 class="pg-title">Highlights + Planning Reference</h2>
     <div class="gold-rule"></div>
+    <div class="reference-block">
+      <p class="reference-title">Lodging Logistics</p>
+      <table class="lodging-table">
+        <thead>
+          <tr>
+            <th>Base</th>
+            <th>Dates</th>
+            <th>Check-in</th>
+            <th>Checkout</th>
+            <th>Planning note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="lodging-place">Canmore, AB</span></td>
+            <td class="mn">Aug 18-21</td>
+            <td class="mn">3:00 PM</td>
+            <td class="mn">10:00 AM</td>
+            <td class="lodging-note">Arrival base for Banff, Lake Louise, Moraine Lake, and Johnston Canyon.</td>
+          </tr>
+          <tr>
+            <td><span class="lodging-place">Golden, BC</span></td>
+            <td class="mn">Aug 21-23</td>
+            <td class="mn">5:00 PM</td>
+            <td class="mn">10:00 AM</td>
+            <td class="lodging-note">Use the later check-in as permission to spend the transfer day in Yoho.</td>
+          </tr>
+          <tr>
+            <td><span class="lodging-place">Valemount, BC</span></td>
+            <td class="mn">Aug 23-26</td>
+            <td class="mn">4:00 PM</td>
+            <td class="mn">10:00 AM</td>
+            <td class="lodging-note">Best for Mount Robson plus one focused Jasper day; avoid stacking too much on arrival.</td>
+          </tr>
+          <tr>
+            <td><span class="lodging-place">Calgary, AB</span></td>
+            <td class="mn">Aug 26-27</td>
+            <td class="mn">3:00 PM</td>
+            <td class="mn">11:00 AM</td>
+            <td class="lodging-note">Positioning night that keeps departure day local and low-stress.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="hl-grid">
       <div class="hl-card"><p class="hl-name">Moraine Lake</p><p class="hl-desc">Valley of Ten Peaks, accessed by shuttle or licensed operator. This is the most important reservation in the Banff portion.</p></div>
       <div class="hl-card"><p class="hl-name">Lake Louise</p><p class="hl-desc">Pair the lakeshore with Moraine Lake, or upgrade to Lake Agnes Tea House if the group wants a moderate hike.</p></div>
@@ -859,11 +962,10 @@
     </div>
     <div class="tips-grid">
       <div class="tip-card"><p class="tip-card-title">Park Admission</p><p>Your dates fall inside Parks Canada's 2026 free-admission window, but shuttle tickets, paid parking, tours, and attraction reservations still need to be booked separately.</p></div>
-      <div class="tip-card"><p class="tip-card-title">Confirmed Trip Costs</p><p>6 travelers. Airbnb/lodging total: $4,882.93 ($813.82/person). Pursuit Pass: $1,473.00 ($245.50/person) including planned pass activities. Known booked total: $6,355.93 ($1,059.32/person) before flights, rental car, fuel, groceries, and meals.</p></div>
       <div class="tip-card"><p class="tip-card-title">Jasper Closures</p><p>Do not build the plan around Maligne Canyon or Edith Cavell for 2026. Keep Jasper flexible and confirm road/trail status close to travel.</p></div>
-      <div class="tip-card"><p class="tip-card-title">Confirmed Lodging Times</p><p>Canmore check-in 3pm / checkout 10am · Golden check-in 5pm / checkout 10am · Valemount check-in 4pm / checkout 10am · Calgary check-in 3pm / checkout 11am.</p></div>
       <div class="tip-card"><p class="tip-card-title">August Weather + Packing</p><p>Warm days, cool nights, fast weather changes. Pack shell jackets, layers, sunscreen, water bottles, bug spray, and footwear that can handle wet trails.</p></div>
       <div class="tip-card"><p class="tip-card-title">Driving + Fuel Notes</p><p>Top off in Canmore, Golden, Jasper, and Valemount. Keep offline maps for Yoho, Icefields Parkway, Hwy 16, Maligne Road, and the Aug 26 Valemount-to-Calgary return.</p></div>
+      <div class="tip-card"><p class="tip-card-title">Private Logistics</p><p>Exact lodging addresses and shared costs are kept out of the public itinerary. Use the separate accommodations map import and group cost note when coordinating with the crew.</p></div>
     </div>
   </section>
 
