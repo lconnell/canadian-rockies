@@ -462,72 +462,6 @@
     }
     .mn { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
 
-    .reference-block {
-      margin-bottom: 32px;
-    }
-
-    .reference-title {
-      font-family: var(--f-mono);
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 14px;
-    }
-
-    .lodging-table {
-      width: 100%;
-      table-layout: fixed;
-      border-collapse: collapse;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      font-size: 12.5px;
-    }
-
-    .lodging-table col:nth-child(1) { width: 20%; }
-    .lodging-table col:nth-child(2) { width: 13%; }
-    .lodging-table col:nth-child(3) { width: 12%; }
-    .lodging-table col:nth-child(4) { width: 12%; }
-    .lodging-table col:nth-child(5) { width: 43%; }
-
-    .lodging-table th {
-      text-align: left;
-      font-family: var(--f-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 13px 14px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .lodging-table td {
-      padding: 13px 14px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-    }
-
-    .lodging-table th:nth-child(-n+4),
-    .lodging-table td:nth-child(-n+4) {
-      white-space: nowrap;
-    }
-
-    .lodging-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .lodging-place {
-      font-family: var(--f-display);
-      font-weight: 700;
-      color: var(--navy);
-      font-size: 15px;
-    }
-
-    .lodging-note {
-      color: var(--muted);
-      line-height: 1.45;
-    }
-
     /* ── Highlights grid ───────────────────────────────────────── */
     .hl-grid {
       display: grid;
@@ -611,7 +545,7 @@
       .tips-grid { grid-template-columns: repeat(2, 1fr); }
       .two-col { grid-template-columns: 1fr 1fr; }
 
-      .base-card, .hl-card, .tip-card, .lodging-table {
+      .base-card, .hl-card, .tip-card {
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
@@ -645,11 +579,6 @@
       .two-col { grid-template-columns: 1fr; gap: 32px; }
       .hl-grid { grid-template-columns: 1fr; }
       .tips-grid { grid-template-columns: 1fr; }
-      .lodging-table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
       .cover-stats { flex-direction: column; gap: 10px; }
     }
   </style>
@@ -920,57 +849,6 @@
     <p class="pg-eyebrow">Quick Reference</p>
     <h2 class="pg-title">Highlights + Planning Reference</h2>
     <div class="gold-rule"></div>
-    <div class="reference-block">
-      <p class="reference-title">Lodging Logistics</p>
-      <table class="lodging-table">
-        <colgroup>
-          <col>
-          <col>
-          <col>
-          <col>
-          <col>
-        </colgroup>
-        <thead>
-          <tr>
-            <th>Base</th>
-            <th>Dates</th>
-            <th>Check-in</th>
-            <th>Checkout</th>
-            <th>Planning note</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="lodging-place">Canmore, AB</span></td>
-            <td class="mn">Aug 18-21</td>
-            <td class="mn">3:00 PM</td>
-            <td class="mn">10:00 AM</td>
-            <td class="lodging-note">Arrival base for Banff, Lake Louise, Moraine Lake, and Johnston Canyon.</td>
-          </tr>
-          <tr>
-            <td><span class="lodging-place">Golden, BC</span></td>
-            <td class="mn">Aug 21-23</td>
-            <td class="mn">5:00 PM</td>
-            <td class="mn">10:00 AM</td>
-            <td class="lodging-note">Use the later check-in as permission to spend the transfer day in Yoho.</td>
-          </tr>
-          <tr>
-            <td><span class="lodging-place">Valemount, BC</span></td>
-            <td class="mn">Aug 23-26</td>
-            <td class="mn">4:00 PM</td>
-            <td class="mn">10:00 AM</td>
-            <td class="lodging-note">Base for Mount Robson, Maligne Lake, Pyramid Lake, and Jasper town time.</td>
-          </tr>
-          <tr>
-            <td><span class="lodging-place">Calgary, AB</span></td>
-            <td class="mn">Aug 26-27</td>
-            <td class="mn">3:00 PM</td>
-            <td class="mn">11:00 AM</td>
-            <td class="lodging-note">Positioning night that keeps departure day local and low-stress.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
     <div class="hl-grid">
       <div class="hl-card"><p class="hl-name">Moraine Lake</p><p class="hl-desc">Valley of Ten Peaks, accessed by shuttle or licensed operator. This is the most important reservation in the Banff portion.</p></div>
       <div class="hl-card"><p class="hl-name">Lake Louise</p><p class="hl-desc">Pair the lakeshore with Moraine Lake, or upgrade to Lake Agnes Tea House if the group wants a moderate hike.</p></div>
@@ -984,7 +862,7 @@
       <div class="tip-card"><p class="tip-card-title">Jasper Closures</p><p>Do not build the plan around Maligne Canyon or Edith Cavell for 2026. Keep Jasper flexible and confirm road/trail status close to travel.</p></div>
       <div class="tip-card"><p class="tip-card-title">August Weather + Packing</p><p>Warm days, cool nights, fast weather changes. Pack shell jackets, layers, sunscreen, water bottles, bug spray, and footwear that can handle wet trails.</p></div>
       <div class="tip-card"><p class="tip-card-title">Driving + Fuel Notes</p><p>Top off in Canmore, Golden, Jasper, and Valemount. Keep offline maps for Yoho, Icefields Parkway, Hwy 16, Maligne Road, and the Aug 26 Valemount-to-Calgary return.</p></div>
-      <div class="tip-card"><p class="tip-card-title">Google Maps Import</p><p>Use <a href="https://lconnell.github.io/canadian-rockies/maps/points-of-interest.csv">points-of-interest.csv</a> as the trip POI layer in Google My Maps, with day, region, priority, booking, and description fields included.</p></div>
+      <div class="tip-card"><p class="tip-card-title">Google My Maps Layers</p><p>Import the public attraction CSVs as separate layers: <a href="https://lconnell.github.io/canadian-rockies/maps/layers/01-banff-lake-louise.csv">Banff / Lake Louise</a>, <a href="https://lconnell.github.io/canadian-rockies/maps/layers/02-yoho-golden.csv">Yoho / Golden</a>, <a href="https://lconnell.github.io/canadian-rockies/maps/layers/03-icefields-parkway.csv">Icefields Parkway</a>, <a href="https://lconnell.github.io/canadian-rockies/maps/layers/04-jasper-mount-robson.csv">Jasper / Mount Robson</a>, and <a href="https://lconnell.github.io/canadian-rockies/maps/layers/05-calgary-logistics.csv">Calgary logistics</a>.</p></div>
     </div>
   </section>
 
