@@ -477,17 +477,24 @@
 
     .lodging-table {
       width: 100%;
+      table-layout: fixed;
       border-collapse: collapse;
       background: var(--surface);
       border: 1px solid var(--border);
       font-size: 12.5px;
     }
 
+    .lodging-table col:nth-child(1) { width: 20%; }
+    .lodging-table col:nth-child(2) { width: 13%; }
+    .lodging-table col:nth-child(3) { width: 12%; }
+    .lodging-table col:nth-child(4) { width: 12%; }
+    .lodging-table col:nth-child(5) { width: 43%; }
+
     .lodging-table th {
       text-align: left;
       font-family: var(--f-mono);
       font-size: 9.5px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--muted);
       padding: 13px 14px;
@@ -498,6 +505,11 @@
       padding: 13px 14px;
       border-bottom: 1px solid var(--border);
       vertical-align: top;
+    }
+
+    .lodging-table th:nth-child(-n+4),
+    .lodging-table td:nth-child(-n+4) {
+      white-space: nowrap;
     }
 
     .lodging-table tr:last-child td {
@@ -911,6 +923,13 @@
     <div class="reference-block">
       <p class="reference-title">Lodging Logistics</p>
       <table class="lodging-table">
+        <colgroup>
+          <col>
+          <col>
+          <col>
+          <col>
+          <col>
+        </colgroup>
         <thead>
           <tr>
             <th>Base</th>
