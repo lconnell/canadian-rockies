@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Canadian Rockies itinerary icon">
+  <rect width="64" height="64" rx="14" fill="#00466e"/>
+  <path d="M8 42 23 18l9 15 7-11 17 20H8Z" fill="#f6f0df"/>
+  <path d="M23 18 32 33l4-6 8 15H8l15-24Z" fill="#d9e5df"/>
+  <path d="M32 33 39 22l17 20H36l-4-9Z" fill="#b8cfd1"/>
+  <path d="M8 46c8 0 8 3 16 3s8-3 16-3 8 3 16 3v7H8V46Z" fill="#e08a2e"/>
+  <path d="M8 51c8 0 8 3 16 3s8-3 16-3 8 3 16 3v2H8v-5Z" fill="#f4c46b" opacity=".82"/>
+</svg>
