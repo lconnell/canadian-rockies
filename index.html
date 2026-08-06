@@ -671,50 +671,84 @@
 
     <div class="map-wrap">
       <svg viewBox="0 0 800 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;" role="img" aria-label="Calgary round trip route through Banff, Yoho, Valemount and Jasper day trips">
+        <style>
+          .map-place {
+            paint-order: stroke;
+            stroke: #f6efe2;
+            stroke-width: 3px;
+            stroke-linejoin: round;
+          }
+          .map-note {
+            paint-order: stroke;
+            stroke: #f6efe2;
+            stroke-width: 2.5px;
+            stroke-linejoin: round;
+          }
+          .distance-badge text {
+            font-family: monospace;
+            font-size: 7.5px;
+            font-weight: 700;
+            letter-spacing: 0.15px;
+            text-anchor: middle;
+          }
+        </style>
         <rect width="800" height="290" fill="#F7F5F0"/>
         <polygon points="0,230 60,140 110,190 175,110 240,170 295,80 360,150 410,100 460,155 520,115 570,160 630,125 680,168 740,135 800,165 800,230" fill="oklch(42% 0.10 155 / 0.10)"/>
         <polygon points="0,230 40,180 90,210 150,160 210,200 270,145 330,190 390,165 440,195 500,170 550,200 610,178 660,205 710,182 770,205 800,195 800,230" fill="oklch(42% 0.10 155 / 0.16)"/>
         <line x1="372" y1="18" x2="372" y2="272" stroke="rgba(0,0,0,0.08)" stroke-width="1" stroke-dasharray="5,4"/>
         <text x="275" y="30" font-family="monospace" font-size="9" fill="rgba(0,0,0,0.28)" letter-spacing="2">BRITISH COLUMBIA</text>
         <text x="420" y="30" font-family="monospace" font-size="9" fill="rgba(0,0,0,0.28)" letter-spacing="2">ALBERTA</text>
-        <path d="M 660,235 C 610,225 560,214 510,188 C 460,162 425,130 380,118 C 335,106 285,126 235,162 C 200,187 160,195 115,205" stroke="oklch(65% 0.14 75)" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M 115,205 C 148,175 178,145 205,108 C 238,62 284,52 332,82 C 380,112 430,130 485,138 C 535,146 585,175 624,205 C 642,219 654,229 660,235" stroke="oklch(42% 0.10 155)" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8,6"/>
+        <path d="M 660,235 C 610,225 560,214 510,188 C 460,162 425,130 380,118 C 335,106 285,126 235,162 C 200,187 160,195 115,205" stroke="oklch(62% 0.15 75)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 115,205 C 148,175 178,145 205,108 C 238,62 284,52 332,82 C 380,112 430,130 485,138 C 535,146 585,175 624,205 C 642,219 654,229 660,235" stroke="oklch(38% 0.11 155)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8,6"/>
         <circle cx="660" cy="235" r="10" fill="oklch(20% 0.04 255)" stroke="#F7F5F0" stroke-width="2.5"/>
-        <text x="660" y="214" font-family="sans-serif" font-weight="700" font-size="12" fill="oklch(20% 0.04 255)" text-anchor="middle">Calgary</text>
-        <text x="660" y="226" font-family="monospace" font-size="9" fill="oklch(50% 0.015 240)" text-anchor="middle">YYC · Start / Calgary night</text>
+        <text class="map-place" x="675" y="214" font-family="sans-serif" font-weight="700" font-size="12" fill="oklch(20% 0.04 255)">Calgary</text>
+        <text class="map-note" x="675" y="226" font-family="monospace" font-size="8.5" fill="oklch(40% 0.02 240)">YYC · start / final night</text>
         <circle cx="510" cy="188" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
-        <text x="510" y="165" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Canmore</text>
-        <text x="510" y="177" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 1 · Banff</text>
+        <text class="map-place" x="510" y="165" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Canmore</text>
+        <text class="map-note" x="510" y="177" font-family="monospace" font-size="8.5" fill="oklch(40% 0.02 240)" text-anchor="middle">Base 1 · Banff</text>
         <circle cx="390" cy="121" r="6" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="2"/>
-        <text x="390" y="96" font-family="sans-serif" font-weight="600" font-size="10.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Lake Louise</text>
-        <text x="390" y="108" font-family="monospace" font-size="8" fill="oklch(50% 0.015 240)" text-anchor="middle">+ Moraine Lake</text>
+        <text class="map-place" x="390" y="96" font-family="sans-serif" font-weight="600" font-size="10.5" fill="oklch(20% 0.04 255)" text-anchor="middle">Lake Louise</text>
+        <text class="map-note" x="390" y="108" font-family="monospace" font-size="8" fill="oklch(40% 0.02 240)" text-anchor="middle">+ Moraine Lake</text>
         <circle cx="312" cy="121" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
-        <text x="312" y="92" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Golden</text>
-        <text x="312" y="104" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 2 · Yoho</text>
+        <text class="map-place" x="312" y="92" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Golden</text>
+        <text class="map-note" x="312" y="104" font-family="monospace" font-size="8.5" fill="oklch(40% 0.02 240)" text-anchor="middle">Base 2 · Yoho</text>
         <circle cx="210" cy="101" r="5.5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="2"/>
-        <text x="210" y="82" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)" text-anchor="middle">Emerald Lake</text>
+        <text class="map-place" x="210" y="82" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)" text-anchor="middle">Emerald Lake</text>
         <circle cx="150" cy="197" r="5.5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="2"/>
-        <text x="150" y="165" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)" text-anchor="middle">Columbia</text>
-        <text x="150" y="176" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)" text-anchor="middle">Icefield</text>
+        <text class="map-place" x="150" y="165" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)" text-anchor="middle">Columbia</text>
+        <text class="map-place" x="150" y="176" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)" text-anchor="middle">Icefield</text>
         <circle cx="115" cy="205" r="8" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="2.5"/>
-        <text x="115" y="230" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Valemount</text>
-        <text x="115" y="242" font-family="monospace" font-size="8.5" fill="oklch(50% 0.015 240)" text-anchor="middle">Base 3</text>
+        <text class="map-place" x="115" y="230" font-family="sans-serif" font-weight="700" font-size="11" fill="oklch(20% 0.04 255)" text-anchor="middle">Valemount</text>
+        <text class="map-note" x="115" y="242" font-family="monospace" font-size="8.5" fill="oklch(40% 0.02 240)" text-anchor="middle">Base 3</text>
         <circle cx="170" cy="192" r="5.5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="2"/>
-        <text x="180" y="182" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)">Jasper</text>
+        <text class="map-place" x="180" y="182" font-family="sans-serif" font-weight="600" font-size="10" fill="oklch(20% 0.04 255)">Jasper</text>
         <circle cx="624" cy="205" r="4.5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="1.5"/>
-        <text x="612" y="194" font-family="sans-serif" font-weight="500" font-size="9.5" fill="oklch(20% 0.04 255)" text-anchor="end">Kananaskis</text>
-        <text x="450" y="202" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">125 km</text>
-        <text x="348" y="140" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">130 km</text>
-        <text x="212" y="154" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">~360–390 km</text>
-        <text x="380" y="150" font-family="monospace" font-size="8.5" fill="oklch(55% 0.015 240)" text-anchor="middle">~530 km return</text>
+        <text class="map-place" x="612" y="183" font-family="sans-serif" font-weight="500" font-size="9.5" fill="oklch(20% 0.04 255)" text-anchor="end">Kananaskis</text>
+
+        <g class="distance-badge" aria-label="Trip route distance: Calgary to Canmore, 125 kilometres on day 1">
+          <rect x="548" y="188" width="84" height="17" rx="8.5" fill="#f6efe2" stroke="oklch(62% 0.15 75)" stroke-width="1"/>
+          <text x="590" y="199.5" fill="oklch(43% 0.12 65)">125 km · DAY 1</text>
+        </g>
+        <g class="distance-badge" aria-label="Trip route distance: Canmore to Golden, 130 kilometres on day 2">
+          <rect x="412" y="143" width="84" height="17" rx="8.5" fill="#f6efe2" stroke="oklch(62% 0.15 75)" stroke-width="1"/>
+          <text x="454" y="154.5" fill="oklch(43% 0.12 65)">130 km · DAY 2</text>
+        </g>
+        <g class="distance-badge" aria-label="Trip route distance: Golden to Valemount, approximately 360 to 390 kilometres on day 6">
+          <rect x="194" y="139" width="112" height="17" rx="8.5" fill="#f6efe2" stroke="oklch(62% 0.15 75)" stroke-width="1"/>
+          <text x="250" y="150.5" fill="oklch(43% 0.12 65)">360–390 km · DAY 6</text>
+        </g>
+        <g class="distance-badge" aria-label="Return route distance: Valemount to Calgary, approximately 530 kilometres on day 9">
+          <rect x="438" y="108" width="112" height="17" rx="8.5" fill="#f6efe2" stroke="oklch(38% 0.11 155)" stroke-width="1"/>
+          <text x="494" y="119.5" fill="oklch(32% 0.10 155)">530 km · DAY 9 RETURN</text>
+        </g>
         <circle cx="26" cy="272" r="6" fill="oklch(60% 0.16 42)" stroke="#F7F5F0" stroke-width="1.5"/>
         <text x="38" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Overnight base</text>
         <circle cx="128" cy="272" r="4.5" fill="oklch(42% 0.10 155)" stroke="#F7F5F0" stroke-width="1.5"/>
         <text x="139" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Day stop</text>
-        <line x1="225" y1="272" x2="255" y2="272" stroke="oklch(65% 0.14 75)" stroke-width="3"/>
-        <text x="263" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Primary route</text>
-        <line x1="355" y1="272" x2="385" y2="272" stroke="oklch(42% 0.10 155)" stroke-width="3" stroke-dasharray="8,6"/>
-        <text x="393" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Return route</text>
+        <line x1="225" y1="272" x2="255" y2="272" stroke="oklch(62% 0.15 75)" stroke-width="3"/>
+        <text x="263" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Trip route</text>
+        <line x1="343" y1="272" x2="373" y2="272" stroke="oklch(38% 0.11 155)" stroke-width="3" stroke-dasharray="8,6"/>
+        <text x="381" y="276" font-family="sans-serif" font-size="9.5" fill="oklch(45% 0.015 240)">Return to Calgary</text>
       </svg>
     </div>
 
